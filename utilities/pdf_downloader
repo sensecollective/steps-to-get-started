@@ -1,0 +1,6 @@
+#!/bin/sh
+
+read -p "Keyword to search for in URL : " kwarg
+read -p "URL? : " lnk
+
+mech-dump --links $lnk | grep $kwarg

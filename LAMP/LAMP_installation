@@ -1,0 +1,32 @@
+1. $ sudo apt-get install apache2 
+   $ sudo apt-get install mysql-server mysql-client libapache2-mod-auth-mysql 
+   $ sudo apt-get install php5 libapache2-mod-php5 php5-mysql phpmyadmin libapache2-mod-wsgi
+
+2. $ sudo emacs /etc/apache2/apache2.conf 
+   >> append "Include /etc/phpmyadmin/apache.conf"
+   ...corrects "The requested URL /phpmyadmin was not found on this server."
+
+3. $ sudo /etc/init.d/apache2 restart
+
+4. $ sudo emacs /var/www/testphp.php 
+   >> paste "<?php phpinfo(); ?>"
+
+5. $ mysql -u root -p 
+   >> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('yourpassword');
+
+6. To get PHP working with MySQL:
+   >> $ sudo emacs /etc/php5/apache2/php.ini
+      and change ";extension=mysql.so" to "extension=mysql.so" (remove semi-colon)
+
+7. while restarting apache2, for tackling "Could not reliably determine the server's fully qualified domain name":
+      >> just add  "ServerName localhost" to /etc/apache2/apache2.conf
+ 
+8. $ sudo /etc/init.d/apache2 restart
+
+9. Test open > "http://localhost/testphp.php" and > "localhost/phpmyadmin/"
+
+10. After installing my-sql server
+   >> $ sudo emacs /etc/mysql/my.cnf
+      and in "bind-address = 127.0.0.1" ..change localhost IP to your IP for network visibility
+
+---------------------------------------------------------------------------------------

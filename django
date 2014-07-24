@@ -1,0 +1,107 @@
+1> # django-admin startproject <proj_name>
+
+2> # cd <proj_name> && django-admin  startapp <app_name> 
+
+3> EDIT settings.py >> INSTALLED_APPS:
+   enable admin, add '<app_name>', 
+
+4> enable DB Engine (like: django.db.backends.mysql):
+   for MySQL, you may use cmdline or go to localhost/phpmyadmin;
+   then create a new db and check privileged users for it
+
+5> include a privileged username,its password and new DB name into settings.py
+
+6> enable local Time-Zone > 'Asia/Kolkata'
+
+7> edit models.py in the <app_name> and add some tables:
+   Example: 
+   	    class Question(models.Model):
+    	        question_text = models.CharField(max_length=200)
+    	    	pub_date = models.DateTimeField('date published')
+
+9> edit <proj_name>/urls.py:
+   Enable admin (uncomment related lines)
+
+8> # python manage.py syncdb (if needed, add superuser)
+
+9> # python manage.py sql <app_name>
+-----------------------------------------
+This results in following cmdline output:
+=========================================
+BEGIN;
+CREATE TABLE `webview_question` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `question_text` varchar(200) NOT NULL,
+    `pub_date` datetime NOT NULL
+)
+;
+CREATE TABLE `webview_choice` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `question_id` integer NOT NULL,
+    `choice_text` varchar(200) NOT NULL,
+    `votes` integer NOT NULL
+)
+;
+ALTER TABLE `webview_choice` ADD CONSTRAINT `question_id_refs_id_69939650` FOREIGN KEY (`question_id`) REFERENCES `webview_question` (`id`);
+
+COMMIT;
+=========================================
+
+10> # python manage.py sqlall <app_name>
+    
+    A combination of all the SQL from the sql, sqlcustom, and sqlindexes commands
+    (this is in addition to output from #9)
+    =========================================
+    CREATE INDEX `webview_choice_25110688` ON `webview_choice` (`question_id`); 
+    =========================================
+
+
+
+11> # python manage.py shell
+    play with django's database API. Explore it more at:
+    https://docs.djangoproject.com/en/1.6/intro/tutorial01/ 
+
+    PS: Add this to <proj_name>/models.py
+    =========================================
+ class Question(models.Model):
+    # ...
+    def __unicode__(self):  # Python 3: def __str__(self):
+        return self.question_text
+
+ class Choice(models.Model):
+    # ...
+    def __unicode__(self):  # Python 3: def __str__(self):
+        return self.choice_text
+    =========================================
+    
+    PS2: In tutorials, <class Polls> exist. Also variable question exists
+    	 In this tut, <class Question> exists. Here variable question_text exists.
+	 Be careful!
+	 Example:
+	 In shell mode (changes reflected below. Compare to default examples!):
+	 from <app_name>.models import Question, Choice
+	 Question.objects.filter(question_text__startswith='What')
+
+12> Sample Tree:
+
+.
+|-- manage.py
+|-- streamer
+|   |-- __init__.py
+|   |-- __init__.pyc
+|   |-- settings.py
+|   |-- settings.pyc
+|   |-- urls.py
+|   |-- urls.pyc
+|   |-- wsgi.py
+|   `-- wsgi.pyc
+`-- webview
+    |-- __init__.py
+    |-- __init__.pyc
+    |-- models.py
+    |-- models.pyc
+    |-- tests.py
+    `-- views.py
+
+
+13> 
