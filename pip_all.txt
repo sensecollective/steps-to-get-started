@@ -24,7 +24,7 @@ Flask-WTF==0.9.5
 JPype1==0.5.5.2
 Jinja2==2.7.3
 Markdown==2.4
-MarkupSafe==0.18
+MarkupSafe==0.23
 MySQL-python==1.2.3
 PAM==0.4.2
 Pillow==2.4.0
@@ -121,7 +121,7 @@ pep8==1.5.7
 pexpect==3.1
 piston-mini-client==0.7.5
 plivo==0.9.6
-pyOpenSSL==0.13
+pyOpenSSL==0.14
 pyasn1==0.1.7
 pycparser==2.10
 pycrypto==2.6.1
@@ -130,7 +130,7 @@ pycurl==7.19.3
 pyes==0.90.1
 pygobject==3.12.0
 pylint==1.1.0
-pymongo==2.7.1
+pymongo==2.7.2
 pyparsing==2.0.1
 pyserial==2.6
 pysmbc==1.0.14.1
@@ -145,7 +145,7 @@ python-ptrace==0.7
 pytz==2014.4
 pyxdg==0.25
 pyzmq==14.0.1
-queuelib==1.1.1
+queuelib==1.2.2
 redis==2.10.1
 reportlab==3.0
 repoze.lru==0.6
@@ -154,6 +154,7 @@ requests-oauthlib==0.4.1
 rq==0.4.6
 scholarec==1.0.1
 scikit-learn==0.14.1
+scipy==0.14.0
 scrapyd==1.0.1
 selenium==2.42.1
 sessioninstaller==0.0.0
