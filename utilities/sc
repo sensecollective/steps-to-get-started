@@ -1,2 +1,3 @@
 #!/bin/sh
-avconv -i "$1" -b:a 192K -vn "$2"
+#avconv -i "$1" -b:a 192K -vn "$2"
+avconv -i "$1" -b:a 320K -vn "$2"
