@@ -1,0 +1,21 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*- 
+
+"""
+Converts all the video files present in current directory.
+Depends on 'sc' command, which could be installed by copying 
+'sc' script, present in this repo, to /usr/sbin/
+"""
+
+from subprocess import call
+from os import listdir
+
+files = [x for x in listdir('.') if ('.' in x)]
+
+for entry in files:
+    name = entry.rsplit('.')[0]
+    cmd = ['sc', entry, name + '.mp3']
+    try:
+        call(cmd)
+    except:
+        quit("sound converter script 'sc' not installed!")
