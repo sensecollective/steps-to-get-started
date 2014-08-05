@@ -8,7 +8,7 @@ Depends on 'sc' command, which could be installed by copying
 """
 
 from subprocess import call
-from os import listdir
+from os import listdir, mkdir
 from glob import glob
 
 #files = [x for x in listdir('.') if ('.' in x)]
@@ -31,3 +31,9 @@ for x in extensions:
     files = glob('*'+x)
     if files:
         convert(files, x)
+
+# try:
+#     mkdir('converted')
+#     call(['mv','*.mp3','converted/'])
+# except:
+#     call(['mv','*.mp3','converted/'])
