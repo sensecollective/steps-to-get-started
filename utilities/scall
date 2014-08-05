@@ -14,7 +14,9 @@ from glob import glob
 #files = [x for x in listdir('.') if ('.' in x)]
 def convert(files, ext):
     if files:
+        print '*'*15
         print "Converting %s type files" % (ext)
+        print '-'*15
         for entry in files:
             name = entry.rstrip(ext) + '.mp3'
             cmd = ['sc', entry, name]
@@ -23,7 +25,7 @@ def convert(files, ext):
             except:
                 quit("sound converter script 'sc' not installed!")
     else:
-        print "%s type files not present" % (ext)
+        print "\n%s type files not present..\n" % (ext)
 
 extensions = ['.webm', '.mp4', '.avi']
 
