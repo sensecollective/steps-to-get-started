@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# <username>/<repository> from Docker Web Hub
+docker search /learn/tutorial
+docker pull /learn/tutorial
+
+# run sample command in container
+docker run /learn/tutorial echo "Hello Arco!"
+
+# install ping 
+docker run /learn/tutorial apt-get install -y ping
+
+# find the ID of the container you just created by installing ping
+docker ps -l 
+
+# use that container ID to save changes
+docker commit <ID> arcolife/ping
+
+# run ping
+docker run /arcolife/ping ping google.com
+
+# list all running containers
+docker ps
+
+# list all containers used
+docker ps -a
+
+# list last used container
+docker ps -l
+
+# push image created to registry
+docker push arcolife/ping
