@@ -14,7 +14,7 @@ docker run /learn/tutorial apt-get install -y ping
 docker ps -l 
 
 # use that container ID to save changes
-docker commit <ID> arcolife/ping
+docker commit <container id> arcolife/ping
 
 # run ping
 docker run /arcolife/ping ping google.com
@@ -30,3 +30,12 @@ docker ps -l
 
 # push image created to registry
 docker push arcolife/ping
+
+# get ip address etc.. 
+docker inspect <container id>
+
+# run docker and keep it running
+docker run -d <container name>
+
+# get inside the container bash
+docker  run -it  -p :80 vos bash
