@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <style>
+     @page { 
+       size: A4; 
+       margin: 1cm 
+     }
+     @media print {
+       nav { display: none }
+     }
+     nav { font-size: .7em }
+     /* @page {
+	size: letter landscape;
+	margin: 2cm;
+	} */
+     a:link:after, a:visited:after { content:" [" attr(href) "] "; }
+    </style>
+  </head>
+  <body>
+    {% block body %}
+    <h2>Some page title.</h2>
+    <table cellpadding="4" cellspacing="0">
+      <tbody>
+        <tr>
+          <td>Some text.</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr style="border: 1px solid #000000;">
+          <td>
+            <h3 style="text-align: center;">Some subtitle</h3>
+            <div>{{ something }}</div>
+          </td>
+	  <td>    <img src="/static/img.png" /> </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr style="margin: 3em 0;"/>
+    <!-- <img src="/static/img.png" /> -->
+
+    {% endblock %}
+    <form action="/pdf2">
+      <button type="submit">Generate PDF</button> 
+    </form>
+  </body>
+</html>
