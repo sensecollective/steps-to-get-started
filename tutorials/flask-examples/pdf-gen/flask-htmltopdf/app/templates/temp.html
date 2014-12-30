@@ -5,9 +5,6 @@
        size: A4; 
        margin: 1cm 
      }
-     @media print {
-       nav { display: none }
-     }
      nav { font-size: .7em }
      /* @page {
 	size: letter landscape;
@@ -37,10 +34,51 @@
     </table>
     <hr style="margin: 3em 0;"/>
     <!-- <img src="/static/img.png" /> -->
-
+    <input id="drawButton" type="button" value="Draw"/>
+    <button type="submit" id="some">Save PNG…</button>
     {% endblock %}
     <form action="/pdf2">
       <button type="submit">Generate PDF</button> 
     </form>
+
+    <canvas id="ex1">
+      <img src="/static/img.png" /> 
+    </canvas>
   </body>
+  <script type="text/javascript" src="/static/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" >
+   $(document).ready(function() {
+
+     $('#some').click(function() {
+       var canvas = document.getElementById("pngButton");
+       console.log(canvas);
+       var img    = canvas.toDataURL("image/png");
+       console.log(img);
+       x = this.renderer.toDataURL('image/png').replace('image/png','image/octet-stream');
+       alert(x);
+       document.write("<img src='" + x + "'/>"); 
+       window.location= x;
+     }); 
+
+     $("#drawButton").click(function() {
+       drawOnCanvas();
+     }); 
+   });
+
+
+   function drawOnCanvas() {
+     var canvas  = document.getElementById("ex1");
+     var context = canvas.getContext("2d");
+     context.fillStyle = "#ff0000";
+     context.strokeStyle = "black";
+     context.lineWidth   = 5;
+     context.fillRect(10,10, 100,100);
+     context.beginPath();
+     context.strokeStyle = "black";
+     context.lineWidth   = 5;
+     context.arc(100, 100, 20, (Math.PI/180) * 0, (Math.PI/180) * 360, false);
+     context.stroke();
+     context.closePath();
+   }
+  </script>    
 </html>

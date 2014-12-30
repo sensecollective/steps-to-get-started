@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# 1. make test file
+echo "<html> <head> <title>crap bag</title> </head> <body> <h1> Guess what? this may not be 4 but may be line 5</h1>  <span class="text">Edit</span> </body> </html>" > test.html
+
+# 2, replace 5 
+sed -i s/'this may not be 4 but may be'/'This is'/g test.html
+
+sed -i.bak s#"class="text">"#"class="text_mod"#g test.html

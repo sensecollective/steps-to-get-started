@@ -1,0 +1,7 @@
+#!/bin/bash
+
+rm ss1.*
+phantomjs rasterize.js http://localhost:8000/incoming/dell-r620-01/dm-cache-intv2/sar/sar-cpu.html ss1.pdf
+phantomjs rasterize.js http://localhost:8000/incoming/dell-r620-01/dm-cache-intv2/sar/sar-cpu.html ss1.jpg
+evince ss1.pdf
+shotwell ss1.jpg

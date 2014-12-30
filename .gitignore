@@ -34,3 +34,4 @@ db.sqlite3
 dumps
 *.db
 uploads/
+target/

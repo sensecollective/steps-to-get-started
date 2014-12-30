@@ -1,0 +1,29 @@
+#!/bin/sh
+
+echo -e "==================="
+
+echo -e "COMMAND:"
+echo -e "\t awk -F'Mem:' '{print \$2}' aa | awk -F' ' '{printf \$1\" \"\$2\" \"\$3}'"
+echo -e "\nRESULT: \n"
+awk -F'Mem:' '{print $2}' aa | awk -F' ' '{printf $1" "$2" "$3}'
+
+echo -e "\n==================="
+
+echo -e "COMMAND:"
+echo "awk -F' ' 'BEGIN {printf \"\nRAM usage stats:\n\"}"
+echo "{printf \"----------------\n\"}"
+echo "{printf \"FIRST SECOND THIRD\n\"}" 
+echo "{print \$1, \$2, \$3}"
+echo "END {printf \"\n------------\nThe End\n\"}' aa"
+
+echo -e "\nRESULT: \n"
+awk -F' ' 'BEGIN {printf "\tRAM usage stats:\n\t----------------\n"} {printf "\tFIRST SECOND THIRD\n"} {print "\t"$1, $2, $3} END {printf "\t\n------------\nThe End\n"}' aa
+
+echo -e "\n==================="
+
+echo -e "COMMAND:"
+echo "awk '/\w+\s3\S*/ {print $0}' aa"
+echo -e "\nRESULT: \n"
+awk '/\w+\s3\S*/ {print $0}' aa
+
+echo -e "\n==================="

@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+for line in $(cat "$1") 
+do 
+    echo $line
+    sed -i 's#'$line'##g' "$1" \
+	&& sed -i '/^$/d' "$1"
+done
