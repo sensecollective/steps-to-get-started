@@ -1,6 +1,15 @@
 #!/bin/sh
 
+# install mech-dump on ubuntu
+# on fedora, this is available under package 'perl-WWW-Mechanize'
+
 read -p "Keyword to search for in URL : " kwarg
 read -p "URL? : " lnk
 
-mech-dump --links $lnk | grep $kwarg
+mech-dump --links $lnk | grep $kwarg > fresh_links
+
+# use this to substitue relative paths with absolute links
+# sed -i s#patter#new pattern#g fresh_links
+
+# use this to mass download the dumped links
+# wget -i fresh_links
