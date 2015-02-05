@@ -63,10 +63,16 @@ example
 - abc 
 ```
 
-### Bold
+### Pre / Code / Monospace
 
 ```
 =oh yeah=
+```
+
+### Bold
+
+```
+* must *
 ```
 
 ### Para points
