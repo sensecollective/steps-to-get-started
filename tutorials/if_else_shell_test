@@ -1,0 +1,10 @@
+#!/bin/bash
+
+aa=0
+
+if [[ $aa == 0 ]]
+then
+    echo "yes"
+else
+    echo "no"
+fi
