@@ -1,0 +1,16 @@
+matplotlib 
+virtualenv 
+pandas 
+scikit-learn 
+django
+flask
+numpy
+scrapy
+tweepy
+mongoengine 
+cryptography
+notebook
+ipython
+gensim
+topia.termextract
+nltk

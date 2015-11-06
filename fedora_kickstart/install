@@ -1,0 +1,25 @@
+#!/bin/bash
+
+sudo dnf install -y emacs-nox gcc vim curl git lapack lapack-devel blas blas-devel gcc-gfortran gcc-c++ gnome-tweak-tool xchat-gnome thunderbird vlc kdiff3 gitk libpng-devel freetype-devel python-devel python3-devel nethogs nmap nmap-frontend nodejs npm sdcv youtube-dl 
+
+
+sudo dnf install -y elasticsearch nginx docker mongodb
+
+sudo systemctl enable elasticsearch nginx docker sshd
+sudo systemctl start elasticsearch nginx docker sshd
+
+sudo pip2 install -U pip
+# sudo dnf reinstall -y python3-pip
+sudo pip3 install -U pip
+
+sudo dnf install -y libffi-devel  libxml-devel libxml2-devel libxslt-devel
+ 
+sudo pip2 install -U scipy
+sudo pip3 install -U scipy
+
+sudo pip2 install -U -r requirements.txt
+sudo pip3 install -U -r requirements.txt
+
+sudo npm install -g grunt-cli
+
+
