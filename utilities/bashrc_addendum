@@ -1,0 +1,47 @@
+# export ADMIN_USER=
+# export ADMIN_PASS=
+# export ADMIN_DB=
+
+# export JAVA_HOME='/usr/lib/jvm/java-1.8.0/'
+# export SECRET_KEY=
+
+# export TWITTER_SECRET=
+# export TWITTER_KEY=
+# export TWITTER_ACCESS_TOKEN=
+# export TWITTER_ACCESS_SECRET=
+# export ALCHEMY_KEY=
+
+# export HADOOP_PREFIX='/home/arcolife/workspace/hadoop-2.6.0'
+
+#export ES_HEAP_SIZE=4g
+
+alias ll='ls -alh'
+export SERVER_D='localhost'
+#LANG='C'
+alias sar='LANG=C sar'
+
+# [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
+
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH=/opt/apache-maven-3.3.3/bin:$PATH
+
+alias vid='youtube-dl -i --extract-audio --audio-format mp3 --audio-quality 0'
+alias y='youtube-dl'
+alias dockviz='docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz'
+
+alias ..='cd ..'
+alias ima='docker images'
+
+# The next line updates PATH for the Google Cloud SDK.
+# source '/home/arcolife/google-cloud-sdk/path.bash.inc'
+
+# The next line enables shell command completion for gcloud.
+# source '/home/arcolife/google-cloud-sdk/completion.bash.inc'
+export PATH=$PATH:$GOPATH/bin
+alias define='sdcv'
+
+echo -e "\t\t\t\e[1;32m Colorless\e[1;31m Green\e[0m \e[1;42mIdeas\e[1;44m Sleep\e[1;40m Furiously \e[0m"

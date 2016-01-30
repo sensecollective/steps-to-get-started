@@ -1,0 +1,6 @@
+add this to ~/.bashrc :
+alias dockviz='docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz'
+
+run this:
+dockviz images -d | dot -Tpng -o images.png
+ 
