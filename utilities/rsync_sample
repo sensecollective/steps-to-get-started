@@ -1,0 +1,10 @@
+#!/bin/bash
+
+SRC_PATH_OR_URL='/home/arcolife/project/'
+DEST_PATH_OR_URL='root@<URL>:/home/arcolife/project/'
+
+# rsync -azP  $SRC_PATH_OR_URL $DEST_PATH_OR_URL
+
+# rsync -azP  $SRC_PATH_OR_URL $DEST_PATH_OR_URL
+
+# rsync -azP  --exclude ${SRC_PATH_OR_URL%/}/.git/  $SRC_PATH_OR_URL $DEST_PATH_OR_URL
