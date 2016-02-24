@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "first column"
+sed 's@\([^,]*\)@\U\1@' employees
+echo
+echo "first Upper, second Lower"
+sed 's/\([^,]*\),\([^,]*\)/\U\1\L\2/' employees
