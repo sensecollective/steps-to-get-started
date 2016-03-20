@@ -1,3 +1,6 @@
 #!/bin/sh
 #avconv -i "$1" -b:a 192K -vn "$2"
-avconv -i "$1" -b:a 320K -vn "$2"
+# avconv -i "$1" -b:a 320K -vn "$2"
+extension="${1##*.}"
+filename="${1%.*}"
+ffmpeg -i "$1" -b:a 256K -vn "$filename".mp3
