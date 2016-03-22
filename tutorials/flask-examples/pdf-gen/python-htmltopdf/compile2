@@ -1,7 +1,7 @@
 #!/bin/bash
 
 rm ss2.*
-phantomjs rasterize.js http://perf42.perf.lab.eng.bos.redhat.com/incoming/dell-r510-02/docker-1.3-no-dmcache/sar/sar-per_cpu.html ss2.pdf
-phantomjs rasterize.js http://perf42.perf.lab.eng.bos.redhat.com/incoming/dell-r510-02/docker-1.3-no-dmcache/sar/sar-per_cpu.html ss2.jpg
+phantomjs rasterize.js http://localhost/incoming/dell-r510-02/docker-1.3-no-dmcache/sar/sar-per_cpu.html ss2.pdf
+phantomjs rasterize.js http://localhost/incoming/dell-r510-02/docker-1.3-no-dmcache/sar/sar-per_cpu.html ss2.jpg
 evince ss2.pdf
 shotwell ss2.jpg

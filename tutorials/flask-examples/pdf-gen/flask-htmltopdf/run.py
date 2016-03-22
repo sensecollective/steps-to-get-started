@@ -111,7 +111,7 @@ def index():
 # @app.route('/generate')
 # def my_func():
 #     subject = "Mail with PDF"
-#     receiver = "arcsharm@redhat.com"
+#     receiver = "arcshams@gmail.com"
 #     mail_to_be_sent = Message(subject=subject, recipients=[receiver])
 #     mail_to_be_sent.body = "This email contains PDF."
 #     pdf = create_pdf(render_template('temp.html'))

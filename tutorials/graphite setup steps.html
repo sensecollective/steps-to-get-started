@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hello!</title>
+<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body><div class="container"><h1 id="graphite-installation-steps">Graphite Installation Steps</h1>
+
+<hr>
+
+<p>Following is a brief documentation to help you get started with setting up a graphite instance and run a sample job to ingest data into it.</p>
+
+<h2 id="install-dependencies">Install Dependencies</h2>
+
+<pre class="prettyprint"><code class=" hljs cmake">yum <span class="hljs-keyword">install</span> httpd python-devel mod_wsgi
+
+pip <span class="hljs-keyword">install</span> Django==<span class="hljs-number">1.6</span>.<span class="hljs-number">5</span>
+pip <span class="hljs-keyword">install</span> parse_lookup
+pip <span class="hljs-keyword">install</span> django-tagging
+pip <span class="hljs-keyword">install</span> carbon
+pip <span class="hljs-keyword">install</span> whisper
+pip <span class="hljs-keyword">install</span> graphite-web
+pip <span class="hljs-keyword">install</span> twisted</code></pre>
+
+<h3 id="create-configurations">Create configurations</h3>
+
+<pre class="prettyprint"><code class=" hljs avrasm"><span class="hljs-keyword">cp</span> /opt/graphite/examples/example-graphite-vhost<span class="hljs-preprocessor">.conf</span> /etc/httpd/conf<span class="hljs-preprocessor">.d</span>/graphite<span class="hljs-preprocessor">.conf</span>
+<span class="hljs-keyword">cp</span> /opt/graphite/conf/storage-schemas<span class="hljs-preprocessor">.conf</span><span class="hljs-preprocessor">.example</span> /opt/graphite/conf/storage-schemas<span class="hljs-preprocessor">.conf</span>
+<span class="hljs-keyword">cp</span> /opt/graphite/conf/storage-aggregation<span class="hljs-preprocessor">.conf</span><span class="hljs-preprocessor">.example</span> /opt/graphite/conf/storage-aggregation<span class="hljs-preprocessor">.conf</span>
+<span class="hljs-keyword">cp</span> /opt/graphite/conf/graphite<span class="hljs-preprocessor">.wsgi</span><span class="hljs-preprocessor">.example</span> /opt/graphite/conf/graphite<span class="hljs-preprocessor">.wsgi</span>
+<span class="hljs-keyword">cp</span> /opt/graphite/conf/graphTemplates<span class="hljs-preprocessor">.conf</span><span class="hljs-preprocessor">.example</span> /opt/graphite/conf/graphTemplates<span class="hljs-preprocessor">.conf</span>
+<span class="hljs-keyword">cp</span> /opt/graphite/conf/carbon<span class="hljs-preprocessor">.conf</span><span class="hljs-preprocessor">.example</span> /opt/graphite/conf/carbon<span class="hljs-preprocessor">.conf</span></code></pre>
+
+
+
+<h3 id="create-necessary-files-optional-in-case-httpd-isnt-able-to">Create necessary files (optional; in case httpd isn’t able to)</h3>
+
+<p>If the SELinux policies aren’t right, one may face ‘permission denied’ repeatedly for the following files. Check next section on how to set the SELinux policies for httpd on graphite directory.</p>
+
+<pre class="prettyprint"><code class=" hljs lasso">touch /opt/graphite/storage/<span class="hljs-keyword">log</span>/webapp/access<span class="hljs-built_in">.</span><span class="hljs-keyword">log</span>
+touch /opt/graphite/storage/<span class="hljs-keyword">log</span>/webapp/error<span class="hljs-built_in">.</span><span class="hljs-keyword">log</span>
+touch /opt/graphite/storage/<span class="hljs-keyword">log</span>/webapp/info<span class="hljs-built_in">.</span><span class="hljs-keyword">log</span>  
+touch /opt/graphite/storage/<span class="hljs-keyword">log</span>/webapp/exception<span class="hljs-built_in">.</span><span class="hljs-keyword">log</span>
+touch /opt/graphite/storage/<span class="hljs-keyword">log</span>/webapp/<span class="hljs-keyword">cache</span><span class="hljs-built_in">.</span><span class="hljs-keyword">log</span>
+touch /opt/graphite/storage/<span class="hljs-keyword">log</span>/webapp/rendering<span class="hljs-built_in">.</span><span class="hljs-keyword">log</span>
+touch /opt/graphite/storage/<span class="hljs-keyword">log</span>/webapp/metricaccess<span class="hljs-built_in">.</span><span class="hljs-keyword">log</span>
+touch /opt/graphite/storage/graphite<span class="hljs-built_in">.</span>db<span class="hljs-attribute">-journal</span></code></pre>
+
+
+
+<h2 id="manage-selinux-policies">Manage SELinux policies</h2>
+
+
+
+<h3 id="for-httpd-access-to-graphite-directory">For httpd access to graphite directory</h3>
+
+
+
+<pre class="prettyprint"><code class=" hljs lasso">semanage fcontext <span class="hljs-attribute">-a</span> <span class="hljs-attribute">-t</span> httpd_sys_rw_content_t  <span class="hljs-string">'/opt/graphite(/.*)?'</span>
+restorecon <span class="hljs-attribute">-v</span> /opt/graphite<span class="hljs-subst">/</span></code></pre>
+
+<h3 id="check-changes">Check changes</h3>
+
+
+
+<pre class="prettyprint"><code class=" hljs coffeescript">ls -Z <span class="hljs-regexp">/opt/graphite/</span>
+ls -Z <span class="hljs-regexp">/opt/graphite/storage/</span>
+</code></pre>
+
+
+
+<h2 id="httpd-config-setup-to-start-django-graphite-service">Httpd config setup to start Django graphite service</h2>
+
+
+
+<h3 id="copy-configuration-file-content-below">Copy configuration file content below</h3>
+
+<p>This goes into <code>/etc/httpd/conf.d/graphite.conf</code></p>
+
+<pre class="prettyprint"><code class=" hljs apache"><span class="hljs-comment"># This needs to be in your server's config somewhere, probably</span>
+<span class="hljs-comment"># the main httpd.conf</span>
+<span class="hljs-comment"># NameVirtualHost *:80</span>
+
+<span class="hljs-comment"># This line also needs to be in your server's config.</span>
+<span class="hljs-comment"># LoadModule wsgi_module modules/mod_wsgi.so</span>
+
+<span class="hljs-comment"># You need to manually edit this file to fit your needs.</span>
+<span class="hljs-comment"># This configuration assumes the default installation prefix</span>
+<span class="hljs-comment"># of /opt/graphite/, if you installed graphite somewhere else</span>
+<span class="hljs-comment"># you will need to change all the occurances of /opt/graphite/</span>
+<span class="hljs-comment"># in this file to your chosen install location.</span>
+
+<span class="hljs-tag">&lt;IfModule !wsgi_module.c&gt;</span>
+    <span class="hljs-keyword"><span class="hljs-common">LoadModule</span></span> wsgi_module modules/mod_wsgi.so
+<span class="hljs-tag">&lt;/IfModule&gt;</span>
+
+<span class="hljs-comment"># XXX You need to set this up!</span>
+<span class="hljs-comment"># Read http://code.google.com/p/modwsgi/wiki/ConfigurationDirectives#WSGISocketPrefix</span>
+<span class="hljs-keyword">WSGISocketPrefix</span> run/wsgi
+
+<span class="hljs-tag">&lt;VirtualHost *:80&gt;</span>
+        <span class="hljs-keyword"><span class="hljs-common">ServerName</span></span> graphite
+        <span class="hljs-keyword"><span class="hljs-common">DocumentRoot</span></span> <span class="hljs-string">"/opt/graphite/webapp"</span>
+        <span class="hljs-keyword">ErrorLog</span> /opt/graphite/storage/log/webapp/error.log
+        <span class="hljs-keyword">CustomLog</span> /opt/graphite/storage/log/webapp/access.log common
+
+    <span class="hljs-keyword"><span class="hljs-common">Header</span></span> set Access-Control-Allow-Origin <span class="hljs-string">"http://localhost:8080"</span>
+    <span class="hljs-keyword"><span class="hljs-common">Header</span></span> set Access-Control-Allow-Methods <span class="hljs-string">"GET, OPTIONS"</span>
+    <span class="hljs-keyword"><span class="hljs-common">Header</span></span> set Access-Control-Allow-Headers <span class="hljs-string">"origin, authorization, accept"</span>
+
+        <span class="hljs-comment"># I've found that an equal number of processes &amp; threads tends</span>
+        <span class="hljs-comment"># to show the best performance for Graphite (ymmv).</span>
+        <span class="hljs-keyword">WSGIDaemonProcess</span> graphite processes=5 threads=5 display-name='<span class="hljs-cbracket">%{GROUP}</span>' inactivity-timeout=120
+        <span class="hljs-keyword">WSGIProcessGroup</span> graphite
+        <span class="hljs-keyword">WSGIApplicationGroup</span> <span class="hljs-cbracket">%{GLOBAL}</span>
+        <span class="hljs-keyword">WSGIImportScript</span> /opt/graphite/conf/graphite.wsgi process-group=graphite application-group=<span class="hljs-cbracket">%{GLOBAL}</span>
+
+        <span class="hljs-comment"># XXX You will need to create this file! There is a graphite.wsgi.example</span>
+        <span class="hljs-comment"># file in this directory that you can safely use, just copy it to graphite.wgsi</span>
+        <span class="hljs-keyword">WSGIScriptAlias</span> / /opt/graphite/conf/graphite.wsgi 
+
+        <span class="hljs-comment"># Alias /content/ /opt/graphite/webapp/content/</span>
+        <span class="hljs-comment"># &lt;Location "/content/"&gt;</span>
+        <span class="hljs-comment">#         SetHandler None</span>
+        <span class="hljs-comment"># &lt;/Location&gt;</span>
+
+        <span class="hljs-comment"># XXX In order for the django admin site media to work you</span>
+        <span class="hljs-comment"># must change @DJANGO_ROOT@ to be the path to your django</span>
+        <span class="hljs-comment"># installation, which is probably something like:</span>
+        <span class="hljs-comment"># /usr/lib/python2.6/site-packages/django</span>
+        <span class="hljs-keyword">Alias</span> /media/ <span class="hljs-string">"@DJANGO_ROOT@/contrib/admin/media/"</span>
+        <span class="hljs-tag">&lt;Location "/media/"&gt;</span>
+                <span class="hljs-keyword"><span class="hljs-common">SetHandler</span></span> None
+        <span class="hljs-tag">&lt;/Location&gt;</span>
+
+        <span class="hljs-comment"># The graphite.wsgi file has to be accessible by apache. It won't</span>
+        <span class="hljs-comment"># be visible to clients because of the DocumentRoot though.</span>
+    <span class="hljs-keyword">Alias</span> /content/ /opt/graphite/webapp/content/
+    <span class="hljs-tag">&lt;Location "/content/"&gt;</span>
+          <span class="hljs-keyword"><span class="hljs-common">SetHandler</span></span> None
+          <span class="hljs-keyword"><span class="hljs-common">Order</span></span> deny,allow
+          <span class="hljs-keyword"><span class="hljs-common">Allow</span></span> from <span class="hljs-literal">all</span>
+    <span class="hljs-tag">&lt;/Location&gt;</span>
+
+    <span class="hljs-tag">&lt;Directory /opt/graphite/conf/&gt;</span>
+               <span class="hljs-comment"># Order deny,allow</span>
+               <span class="hljs-comment"># Allow from all</span>
+               <span class="hljs-keyword"><span class="hljs-common">Options</span></span> <span class="hljs-literal">All</span>
+               <span class="hljs-keyword">AllowOverride</span> <span class="hljs-literal">All</span>
+               <span class="hljs-keyword">Require</span> <span class="hljs-literal">all</span> granted
+    <span class="hljs-tag">&lt;/Directory&gt;</span>
+
+        <span class="hljs-tag">&lt;Directory /opt/graphite/webapp/&gt;</span>
+               <span class="hljs-keyword"><span class="hljs-common">Options</span></span> <span class="hljs-literal">All</span>
+               <span class="hljs-keyword">AllowOverride</span> <span class="hljs-literal">All</span>
+               <span class="hljs-keyword">Require</span> <span class="hljs-literal">all</span> granted
+    <span class="hljs-tag">&lt;/Directory&gt;</span>
+
+<span class="hljs-tag">&lt;/VirtualHost&gt;</span></code></pre>
+
+<p>Here, make sure you set <code>Access-Control-Allow-Origin</code> appropriately.  </p>
+
+<h3 id="restart-httpd-service">Restart httpd service</h3>
+
+
+
+<pre class="prettyprint"><code class=" hljs ">service  httpd restart</code></pre>
+
+<p>Visit <a href="http://localhost/">localhost</a> and check if a page opens up, similar to the one below:</p>
+
+<p><img src="http://localhost/archit/localhost.png" alt="Graphite Default Instance" title=""></p>
+
+<h2 id="run-a-sample-job">Run a sample job</h2>
+
+<p>Make sure you use user <strong>apache</strong> every time to run all kinds of data generation / ingress jobs, because the files created based on this script should be owned by <strong>apache</strong></p>
+
+<ul>
+<li><p>Start service on port <br>
+<code>sudo -u apache python carbon-cache.py start</code></p></li>
+<li><p>Run the example <br>
+<code>sudo -u apache python example-client.py</code></p></li>
+</ul>
+
+
+
+<h2 id="demo">Demo</h2>
+
+<h3 id="sample-metrics-graph-on-graphite">Sample Metrics Graph on Graphite</h3>
+
+<p><img src="http://localhost/archit/metrics.png" alt="Sample Metrics Graph on Graphite" title=""></p></div></body>
+</html>
