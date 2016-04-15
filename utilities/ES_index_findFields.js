@@ -7,18 +7,24 @@ if (!process.argv[2]) {
 console.log("processing file: " + process.argv[2]);
 
 var fields = {},
-		fs = require('fs'),
-		obj = JSON.parse(fs.readFileSync(process.argv[2], 'utf8')),
-		query = {type: 'number'},
-		typeMap = {
-			'float': 'number',
-			'double': 'number',
-			'integer': 'number',
-			'long': 'number',
-			'date': 'date',
-			'string': 'string',
-			'nested': 'nested'
-		};
+	fs = require('fs'),
+	obj = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
+
+if (!process.argv[3]) {
+	query = {type: 'number'};
+} else {
+	query = {type: process.argv[3]};
+}
+
+var typeMap = {
+	'float': 'number',
+	'double': 'number',
+	'integer': 'number',
+	'long': 'number',
+	'date': 'date',
+	'string': 'string',
+	'nested': 'nested'
+};
 
 function AutocompleteSearchFields(doc, pre) {
 	for (var field in doc) {
@@ -33,12 +39,7 @@ function AutocompleteSearchFields(doc, pre) {
 					new_pre = field + '.' + subfield;
 				}
 				if (query.type && typeMap[subfield_prop.type] !== query.type) {
-					// if (subfield_prop.type == 'nested') {
 					AutocompleteSearchFields(subfield_prop.properties, new_pre);
-					// } else {
-					//     console.log("invalid subfield: " + subfield + '--' + subfield_prop.type);
-					//     continue;
-					// }
 				}
 				if (subfield_prop.type && subfield[0] !== '_') {
 					if (query.type && typeMap[subfield_prop.type] == query.type) {
@@ -47,7 +48,18 @@ function AutocompleteSearchFields(doc, pre) {
 				}
 			}
 		} else if (prop.hasOwnProperty('type') && prop.hasOwnProperty('properties')) {
-			// eg: disk / nested docs || TODO: handle later
+
+			if (query.type && typeMap[prop.type] === query.type) {
+				if (prop.type && field[0] !== '_') {
+					if (pre) {
+						new_pre = pre + '.' + field;
+					} else {
+						new_pre = field;
+					}
+					fields[new_pre] = {text: new_pre, type: prop.type};
+				}
+			}
+			
 			if (pre) {
 				new_pre = pre + '.' + field;
 			} else {

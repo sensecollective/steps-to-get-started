@@ -1,0 +1,37 @@
+#!/bin/bash
+
+user_interrupt(){
+    echo -e "\n\nKeyboard Interrupt detected."
+    echo "count: $(wc -l server_side)"
+    echo
+    echo -e "sample head content from file:\n\n$(head server_side)"
+    rm -f server_side
+    pkill nc
+    exit 1
+}
+
+trap user_interrupt SIGINT
+trap user_interrupt SIGTSTP
+
+[ $# = 0 ] && {
+	echo "You could also supply custom port to this script"
+	echo "usage: $ ./port_busy_keeper <port>"
+	echo
+	echo "For now though.."
+}
+
+PORT=$1
+
+if [[ -z $PORT ]]; then
+	PORT=8282
+fi
+
+echo "keeping port:$PORT busy.."
+pkill nc
+nc -l  -k localhost $PORT -o server_side >> /dev/null 2>&1 &
+
+while :; do
+	echo "sdsd$RANDOM shit"  | nc localhost $PORT
+	sleep 1
+done
+
