@@ -1,0 +1,314 @@
+{
+   "_shards" : {
+      "successful" : 6,
+      "total" : 6,
+      "failed" : 0
+   },
+   "timed_out" : false,
+   "took" : 7,
+   "aggregations" : {
+      "4" : {
+         "buckets" : [
+            {
+               "2" : {
+                  "doc_count" : 9,
+                  "nested_aggs" : {
+                     "doc_count" : 1,
+                     "1" : {
+                        "value" : 90.4
+                     }
+                  }
+               },
+               "key_as_string" : "2015-06-22T14:20:00.000Z",
+               "key" : 1434982800000,
+               "doc_count" : 1
+            },
+            {
+               "doc_count" : 6,
+               "key" : 1434982860000,
+               "key_as_string" : "2015-06-22T14:21:00.000Z",
+               "2" : {
+                  "doc_count" : 54,
+                  "nested_aggs" : {
+                     "1" : {
+                        "value" : 36
+                     },
+                     "doc_count" : 6
+                  }
+               }
+            },
+            {
+               "doc_count" : 6,
+               "key" : 1434982920000,
+               "key_as_string" : "2015-06-22T14:22:00.000Z",
+               "2" : {
+                  "doc_count" : 54,
+                  "nested_aggs" : {
+                     "1" : {
+                        "value" : 40.2666666666667
+                     },
+                     "doc_count" : 6
+                  }
+               }
+            },
+            {
+               "key" : 1434982980000,
+               "doc_count" : 6,
+               "2" : {
+                  "doc_count" : 54,
+                  "nested_aggs" : {
+                     "1" : {
+                        "value" : 35.0666666666667
+                     },
+                     "doc_count" : 6
+                  }
+               },
+               "key_as_string" : "2015-06-22T14:23:00.000Z"
+            },
+            {
+               "doc_count" : 6,
+               "key" : 1434983040000,
+               "key_as_string" : "2015-06-22T14:24:00.000Z",
+               "2" : {
+                  "doc_count" : 54,
+                  "nested_aggs" : {
+                     "1" : {
+                        "value" : 38.8
+                     },
+                     "doc_count" : 6
+                  }
+               }
+            },
+            {
+               "key_as_string" : "2015-06-22T14:25:00.000Z",
+               "2" : {
+                  "doc_count" : 54,
+                  "nested_aggs" : {
+                     "1" : {
+                        "value" : 28.6666666666667
+                     },
+                     "doc_count" : 6
+                  }
+               },
+               "doc_count" : 6,
+               "key" : 1434983100000
+            },
+            {
+               "doc_count" : 6,
+               "key" : 1434983160000,
+               "key_as_string" : "2015-06-22T14:26:00.000Z",
+               "2" : {
+                  "doc_count" : 54,
+                  "nested_aggs" : {
+                     "1" : {
+                        "value" : 39.7333333333333
+                     },
+                     "doc_count" : 6
+                  }
+               }
+            },
+            {
+               "key" : 1434983220000,
+               "doc_count" : 6,
+               "2" : {
+                  "nested_aggs" : {
+                     "doc_count" : 6,
+                     "1" : {
+                        "value" : 39.8666666666667
+                     }
+                  },
+                  "doc_count" : 54
+               },
+               "key_as_string" : "2015-06-22T14:27:00.000Z"
+            },
+            {
+               "key_as_string" : "2015-06-22T14:28:00.000Z",
+               "2" : {
+                  "doc_count" : 54,
+                  "nested_aggs" : {
+                     "doc_count" : 6,
+                     "1" : {
+                        "value" : 25.3316666666667
+                     }
+                  }
+               },
+               "doc_count" : 6,
+               "key" : 1434983280000
+            },
+            {
+               "key" : 1434983340000,
+               "doc_count" : 6,
+               "2" : {
+                  "nested_aggs" : {
+                     "1" : {
+                        "value" : 33.7333333333333
+                     },
+                     "doc_count" : 6
+                  },
+                  "doc_count" : 54
+               },
+               "key_as_string" : "2015-06-22T14:29:00.000Z"
+            },
+            {
+               "key_as_string" : "2015-06-22T14:30:00.000Z",
+               "2" : {
+                  "doc_count" : 54,
+                  "nested_aggs" : {
+                     "1" : {
+                        "value" : 35.2
+                     },
+                     "doc_count" : 6
+                  }
+               },
+               "doc_count" : 6,
+               "key" : 1434983400000
+            },
+            {
+               "2" : {
+                  "doc_count" : 54,
+                  "nested_aggs" : {
+                     "1" : {
+                        "value" : 31.0666666666667
+                     },
+                     "doc_count" : 6
+                  }
+               },
+               "key_as_string" : "2015-06-22T14:31:00.000Z",
+               "key" : 1434983460000,
+               "doc_count" : 6
+            },
+            {
+               "key" : 1434983520000,
+               "doc_count" : 6,
+               "2" : {
+                  "nested_aggs" : {
+                     "doc_count" : 6,
+                     "1" : {
+                        "value" : 34.66
+                     }
+                  },
+                  "doc_count" : 54
+               },
+               "key_as_string" : "2015-06-22T14:32:00.000Z"
+            },
+            {
+               "doc_count" : 6,
+               "key" : 1434983580000,
+               "key_as_string" : "2015-06-22T14:33:00.000Z",
+               "2" : {
+                  "nested_aggs" : {
+                     "doc_count" : 6,
+                     "1" : {
+                        "value" : 28.2666666666667
+                     }
+                  },
+                  "doc_count" : 54
+               }
+            },
+            {
+               "key_as_string" : "2015-06-22T14:34:00.000Z",
+               "2" : {
+                  "nested_aggs" : {
+                     "doc_count" : 6,
+                     "1" : {
+                        "value" : 22.8
+                     }
+                  },
+                  "doc_count" : 54
+               },
+               "doc_count" : 6,
+               "key" : 1434983640000
+            },
+            {
+               "doc_count" : 6,
+               "key" : 1434983700000,
+               "key_as_string" : "2015-06-22T14:35:00.000Z",
+               "2" : {
+                  "nested_aggs" : {
+                     "1" : {
+                        "value" : 32.2666666666667
+                     },
+                     "doc_count" : 6
+                  },
+                  "doc_count" : 54
+               }
+            },
+            {
+               "2" : {
+                  "nested_aggs" : {
+                     "1" : {
+                        "value" : 18
+                     },
+                     "doc_count" : 6
+                  },
+                  "doc_count" : 54
+               },
+               "key_as_string" : "2015-06-22T14:36:00.000Z",
+               "key" : 1434983760000,
+               "doc_count" : 6
+            },
+            {
+               "doc_count" : 6,
+               "key" : 1434983820000,
+               "key_as_string" : "2015-06-22T14:37:00.000Z",
+               "2" : {
+                  "nested_aggs" : {
+                     "doc_count" : 6,
+                     "1" : {
+                        "value" : 28.9333333333333
+                     }
+                  },
+                  "doc_count" : 54
+               }
+            },
+            {
+               "key_as_string" : "2015-06-22T14:38:00.000Z",
+               "2" : {
+                  "nested_aggs" : {
+                     "doc_count" : 6,
+                     "1" : {
+                        "value" : 25.3333333333333
+                     }
+                  },
+                  "doc_count" : 54
+               },
+               "doc_count" : 6,
+               "key" : 1434983880000
+            },
+            {
+               "key_as_string" : "2015-06-22T14:39:00.000Z",
+               "2" : {
+                  "doc_count" : 54,
+                  "nested_aggs" : {
+                     "doc_count" : 6,
+                     "1" : {
+                        "value" : 39.4666666666667
+                     }
+                  }
+               },
+               "doc_count" : 6,
+               "key" : 1434983940000
+            },
+            {
+               "key_as_string" : "2015-06-22T14:40:00.000Z",
+               "2" : {
+                  "nested_aggs" : {
+                     "doc_count" : 4,
+                     "1" : {
+                        "value" : 104.8
+                     }
+                  },
+                  "doc_count" : 36
+               },
+               "doc_count" : 4,
+               "key" : 1434984000000
+            }
+         ]
+      }
+   },
+   "hits" : {
+      "max_score" : 0,
+      "hits" : [],
+      "total" : 119
+   }
+}

@@ -1,4 +1,4 @@
-
+#!/usr/bin/env node
 // install: $ npm install simple-grep
 
 var grep = require('simple-grep');
