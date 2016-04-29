@@ -1,4 +1,5 @@
 #!/bin/bash
 
-du -h | grep -i '\s\./\w*[-A-Za-z]*$'
+# du -h | grep -i '\s\./\w*[-A-Za-z]*$'
+du -sh *
 
