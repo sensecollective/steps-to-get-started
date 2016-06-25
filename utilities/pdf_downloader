@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# ref: http://coderiddles.blogspot.in/2014/01/script-to-dump-links-on-webpage.html
+
 # install mech-dump on ubuntu
 # on fedora, this is available under package 'perl-WWW-Mechanize'
 
