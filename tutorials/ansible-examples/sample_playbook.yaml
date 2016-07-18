@@ -1,0 +1,27 @@
+---
+- hosts: docker-hosts
+  remote_user: root
+  roles:
+    - backup
+
+- name: sample test
+  hosts: capsules
+  remote_user: root
+  vars_files:
+    - vars/main.yaml
+
+  tasks:
+    - shell: ls /root/
+      register: data
+      when: sample == true      
+
+    - shell: ls /etc/
+      register: tota
+      when: data.changed
+
+# - hosts: capsules
+#   remote_user: root
+#   roles:
+#     - content
+
+#- include: vars/main.yaml

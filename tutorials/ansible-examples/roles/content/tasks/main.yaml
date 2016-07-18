@@ -1,0 +1,4 @@
+---
+    - shell: ls /root/
+      register: data
+...
