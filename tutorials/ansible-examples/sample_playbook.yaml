@@ -1,14 +1,17 @@
 ---
 - hosts: docker-hosts
   remote_user: root
+  # vars_files:
+  #   - group_vars/main.yaml
   roles:
-    - backup
-
+    - { role: backup,
+      when: sample == true }
+  
 - name: sample test
   hosts: capsules
   remote_user: root
   vars_files:
-    - vars/main.yaml
+    - group_vars/main.yaml
 
   tasks:
     - shell: ls /root/
@@ -24,4 +27,4 @@
 #   roles:
 #     - content
 
-#- include: vars/main.yaml
+#- include: group_vars/main.yaml
