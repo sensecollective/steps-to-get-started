@@ -1,5 +1,6 @@
 #!/bin/bash
 
-ansible-playbook -i hosts.ini -v sample_playbook.yaml
+ansible-playbook   -vv test_playbook_local.yaml
+# ansible-playbook -i hosts.ini -v sample_playbook.yaml
 #ansible-playbook -i hosts.ini -v sample_playbook.yaml --extra-vars "sample=true"
 

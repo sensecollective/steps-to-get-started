@@ -1,4 +1,8 @@
 ---
-    - shell: hostname -f
-      register: comp
+- command:
+    hostname -f
+  with_items:
+    ls /etc
+    cat /etc/redhat-release
+  register: comp
 ...
