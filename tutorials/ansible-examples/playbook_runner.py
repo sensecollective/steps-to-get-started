@@ -110,20 +110,26 @@ class Runner(object):
 
 
 def main():
+    # tags in the tasks section of YAML playbook
+    TASKS = ['debug', 'simple', 'sequence_count',
+             'random_choice', 'until_find',
+             'indexed_items', 'template']
+    
     runner = Runner(
         playbook=sys.argv[1],
         hosts=sys.argv[2],
         display=display,
         options={
-            'subset': '~^localhost',
+            # 'subset': '~^localhost',
             # 'become': True,
             # 'become_method': 'sudo',
             # 'become_user': 'root',
             # 'private_key_file': '/path/to/the/id_rsa',
-            # 'tags': 'debug',
+            'tags': TASKS[:4],
             # 'skip_tags': 'debug',
-            'verbosity': 0,
+            'verbosity': 1,
         },
+        
         # passwords={
         #     'become_pass': 'sudo_password',
         #     'conn_pass': 'ssh_password',

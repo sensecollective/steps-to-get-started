@@ -2,9 +2,9 @@
 - name: sample test
   hosts: localhost
   connection: local
+  
   vars_files:
     - group_vars/main.yaml
-
   vars:
     - products: [asa, gd]
 
@@ -16,10 +16,14 @@
       vars:
         - color: brown
       register: sequence
+      tags:
+        - sequence_count
 
     - command:
         hostname -f
       register: hostname
+      tags:
+        - simple
 
     - command:
         echo {{item}}
@@ -28,6 +32,8 @@
         - "something"
         - "more"
         - "sdsd"
+      tags:
+        - random_choice
 
     - command:
         cat /etc/redhat-release
@@ -35,11 +41,15 @@
       until: result.stdout.find("24") != -1
       retries: 5
       delay: 1
+      tags:
+        - until_find
 
     - command:
         echo {{item}}
       with_indexed_items: "{{ products }}"
       register: indexed_items
+      tags:
+        - indexed_items
 
     - name: Debug task
       debug:
