@@ -1,1 +1,6 @@
 *.retry
+*.pyc
+*~
+
+lextab.py
+yacctab.py

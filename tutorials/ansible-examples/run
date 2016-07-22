@@ -1,6 +1,10 @@
 #!/bin/bash
 
-ansible-playbook   -vv test_playbook_local.yaml
-# ansible-playbook -i hosts.ini -v sample_playbook.yaml
-#ansible-playbook -i hosts.ini -v sample_playbook.yaml --extra-vars "sample=true"
+# commandline
+ansible-playbook   -vv local_playbook.yaml
 
+# python API 2.1
+./playbook_runner.py local_playbook.yaml hosts.ini
+
+# ansible-playbook -i hosts.ini -v sample_playbook.yaml
+# ansible-playbook -i hosts.ini -v sample_playbook.yaml --extra-vars "sample=true"

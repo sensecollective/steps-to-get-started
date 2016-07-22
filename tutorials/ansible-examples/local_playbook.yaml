@@ -7,12 +7,14 @@
 
   vars:
     - products: [asa, gd]
-    
+
   tasks:
-  
+
     - command:
-        echo {{item}}
+        echo {{item}} {{ color }}
       with_sequence: count=2
+      vars:
+        - color: brown
       register: sequence
 
     - command:
@@ -38,3 +40,16 @@
         echo {{item}}
       with_indexed_items: "{{ products }}"
       register: indexed_items
+
+    - name: Debug task
+      debug:
+        msg: Hello world!
+      tags:
+        - debug
+
+    - name: Template task
+      template:
+        src: templates/test.j2
+        dest: /tmp/test.txt
+      tags:
+        - template

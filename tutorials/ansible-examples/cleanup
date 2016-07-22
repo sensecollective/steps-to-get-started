@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+rm yacctab.py lextab.py
+rm *.retry
+rm *~
+rm -rf __pycache__
+rm -rf */__pycache__
