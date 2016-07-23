@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 rm yacctab.py lextab.py
-rm *.retry
-rm *~
-rm -rf __pycache__
-rm -rf */__pycache__
+
+rm *.retry *.log ~/ansible.log
+rm *~ */*~
+rm *.pyc */*.pyc
+
+rm -rf __pycache__  */__pycache__

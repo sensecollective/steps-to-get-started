@@ -10,7 +10,7 @@
 
   tasks:
 
-    - command:
+    - command: >
         echo {{item}} {{ color }}
       with_sequence: count=2
       vars:
@@ -19,13 +19,36 @@
       tags:
         - sequence_count
 
-    - command:
-        hostname -f
-      register: hostname
+
+    # - file: path=/tmp/alpha.txt state=touch
+    #   tags:
+    #     - simple
+    
+    - stat: path=/tmp/alpha.txt
+      register: simple_task
       tags:
         - simple
 
-    - command:
+    # - file: path=/tmp/alpha.txt state=touch
+    #   register: simple_task
+    #   tags:
+    #     - simple
+
+    - debug: msg="File exists"
+      when: simple_task.stat.exists == true
+      tags:
+        - check_path
+
+    - copy: >
+            content="lacosa" dest="/tmp/alpha.txt"
+      when: simple_task.stat.exists == true
+
+
+    - command: >
+            cat "/tmp/alpha.txt"
+      when: simple_task.stat.exists == true
+
+    - command: >
         echo {{item}}
       register: random_choice
       with_random_choice:
@@ -44,7 +67,7 @@
       tags:
         - until_find
 
-    - command:
+    - command: >
         echo {{item}}
       with_indexed_items: "{{ products }}"
       register: indexed_items

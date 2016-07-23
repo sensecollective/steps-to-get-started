@@ -51,7 +51,7 @@ class Runner(object):
         self.options = Options()
         for k, v in options.iteritems():
             setattr(self.options, k, v)
-
+        
         # Set global verbosity
         self.display = display
         self.display.verbosity = self.options.verbosity
@@ -91,7 +91,7 @@ class Runner(object):
             sys.exit(1)
 
         self.variable_manager.set_inventory(self.inventory)
-
+        # import pdb; pdb.set_trace()
         # Setup playbook executor, but don't run until run() called
         self.pbex = playbook_executor.PlaybookExecutor(
             playbooks=[playbook],
@@ -106,12 +106,28 @@ class Runner(object):
         self.pbex.run()
         stats = self.pbex._tqm._stats
 
+        # Test if success for record_logs
+        run_success = True
+        hosts = sorted(stats.processed.keys())
+        for h in hosts:
+            t = stats.summarize(h)
+            if t['unreachable'] > 0 or t['failures'] > 0:
+                run_success = False
+
+        # Dirty hack to send callback to save logs with data we want
+        # Note that function "record_logs" is one I created and put into
+        # the playbook callback file
+        # import pdb; pdb.set_trace()
+        self.pbex._tqm.send_callback('record_logs')
+        # os.remove(self.hosts.name)
+        
         return stats
 
 
 def main():
     # tags in the tasks section of YAML playbook
-    TASKS = ['debug', 'simple', 'sequence_count',
+    TASKS = ['simple', 'check_path',
+             'debug', 'sequence_count',
              'random_choice', 'until_find',
              'indexed_items', 'template']
     
@@ -125,9 +141,9 @@ def main():
             # 'become_method': 'sudo',
             # 'become_user': 'root',
             # 'private_key_file': '/path/to/the/id_rsa',
-            'tags': TASKS[:4],
+            # 'tags': TASKS[:],
             # 'skip_tags': 'debug',
-            'verbosity': 1,
+            'verbosity': 0,
         },
         
         # passwords={
@@ -139,6 +155,7 @@ def main():
 
     stats = runner.run()
 
+    return stats
     # Maybe do something with stats here? If you want!
 
 
