@@ -2,6 +2,7 @@
 
 rm yacctab.py lextab.py
 
+rm /tmp/alpha.txt
 rm *.retry *.log ~/ansible.log
 rm *~ */*~
 rm *.pyc */*.pyc

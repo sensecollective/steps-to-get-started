@@ -127,6 +127,7 @@ class Runner(object):
 def main():
     # tags in the tasks section of YAML playbook
     TASKS = ['simple', 'check_path',
+             'simple_pre', 'add_content', 'file_status',
              'debug', 'sequence_count',
              'random_choice', 'until_find',
              'indexed_items', 'template']
@@ -136,14 +137,14 @@ def main():
         hosts=sys.argv[2],
         display=display,
         options={
-            # 'subset': '~^localhost',
+            'subset': '~^localhost',
             # 'become': True,
             # 'become_method': 'sudo',
             # 'become_user': 'root',
             # 'private_key_file': '/path/to/the/id_rsa',
-            # 'tags': TASKS[:],
+            'tags': TASKS[:8],
             # 'skip_tags': 'debug',
-            'verbosity': 0,
+            'verbosity': 2,
         },
         
         # passwords={

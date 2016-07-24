@@ -7,8 +7,32 @@
     - group_vars/main.yaml
   vars:
     - products: [asa, gd]
-
+    - file_present: false
+    
   tasks:
+
+    - stat: path=/tmp/alpha.txt
+      register: simple_task
+      tags:
+        - simple
+
+    - debug:
+        msg: "File exists: {{ file_present }}"
+      when: simple_task.stat.exists == true
+      tags:
+        - check_path
+
+    - file: path=/tmp/alpha.txt state=touch
+      when: simple_task.stat.exists != true
+      register: simple_pre
+      tags:
+        - simple_pre
+
+    - copy: >
+            content="lacosa" dest="/tmp/alpha.txt"
+      when: simple_pre.changed or simple_task.stat.exists == true
+      tags:
+        - add_content
 
     - command: >
         echo {{item}} {{ color }}
@@ -18,31 +42,6 @@
       register: sequence
       tags:
         - sequence_count
-
-
-    # - file: path=/tmp/alpha.txt state=touch
-    #   tags:
-    #     - simple
-    
-    - stat: path=/tmp/alpha.txt
-      register: simple_task
-      tags:
-        - simple
-
-    # - file: path=/tmp/alpha.txt state=touch
-    #   register: simple_task
-    #   tags:
-    #     - simple
-
-    - debug: msg="File exists"
-      when: simple_task.stat.exists == true
-      tags:
-        - check_path
-
-    - copy: >
-            content="lacosa" dest="/tmp/alpha.txt"
-      when: simple_task.stat.exists == true
-
 
     - command: >
             cat "/tmp/alpha.txt"

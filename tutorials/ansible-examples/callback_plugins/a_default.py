@@ -65,6 +65,7 @@ class CallbackModule(CallbackBase):
                 self.logger.append("fatal: [%s]: FAILED! => %s" % (result._host.get_name(), self._dump_results(result._result)))
 
     def v2_runner_on_ok(self, result):
+        print("------------- v2_runner_on_ok")
         self._clean_results(result._result, result._task.action)
         delegated_vars = result._result.get('_ansible_delegated_vars', None)
         if result._task.action == 'include':
@@ -80,6 +81,9 @@ class CallbackModule(CallbackBase):
             else:
                 msg = "ok: [%s]" % result._host.get_name()
 
+        #import pdb; pdb.set_trace()
+        #msg += " => (%s)" % (result._result)
+                
         if result._task.loop and 'results' in result._result:
             self._process_items(result)  # item_on_failed, item_on_skipped, item_on_ok
         else:
@@ -115,7 +119,9 @@ class CallbackModule(CallbackBase):
         self.logger.append(msg)
 
     def v2_playbook_item_on_ok(self, result):
+        print("------------- v2_playbook_item_on_ok")
         delegated_vars = result._result.get('_ansible_delegated_vars', None)
+
         if result._task.action == 'include':
             return
         elif result._result.get('changed', False):
@@ -177,8 +183,7 @@ class CallbackModule(CallbackBase):
         Special callback added to this callback plugin
         Called by Runner objet
         """
-        print("GOT HEREEE")
+        print("GOTTA GO SOMEWHEREEE")
         # print(self.logger.log)
         # print(self.logger.runtime)
-        # import pdb; pdb.set_trace()
-        return "PUT THERE"
+        return "MAYBE THERE"
