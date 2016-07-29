@@ -1,10 +1,14 @@
 #!/bin/bash
 
+
+# python API 1.9.6
+./1.9.6/runner.py
+
 # commandline
-ansible-playbook   -vv local_playbook.yaml
+# ansible-playbook   -vv local_playbook.yaml
 
 # python API 2.1
-./playbook_runner.py local_playbook.yaml hosts.ini
+# ./2.1/playbook_runner.py sample_playbook.yaml hosts.ini
 
 # ansible-playbook -i hosts.ini -v sample_playbook.yaml
 # ansible-playbook -i hosts.ini -v sample_playbook.yaml --extra-vars "sample=true"
