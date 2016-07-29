@@ -1,5 +1,12 @@
 #!/bin/bash
 
+export ANSIBLE_CONFIG=$PWD/conf/ansible.cfg
+
+if [[ ! -d venv/ ]]; then
+    virtualenv venv
+fi
+
+source venv/bin/activate
 
 # python API 1.9.6
 ./1.9.6/runner.py
@@ -12,3 +19,5 @@
 
 # ansible-playbook -i hosts.ini -v sample_playbook.yaml
 # ansible-playbook -i hosts.ini -v sample_playbook.yaml --extra-vars "sample=true"
+
+deactivate
