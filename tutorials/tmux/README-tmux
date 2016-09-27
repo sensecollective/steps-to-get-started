@@ -1,0 +1,11 @@
+- install tmux rpm
+
+- create tmux session:
+  $ /root/tmux-create-session-cfme-performance.sh
+
+- detach from current session: ctrl-b d
+- switch windows in session: ctrl-b 1/2/3
+- switch panes: ctrl-b o
+
+- Join a previous session:
+  $ tmux attach-session -t cfme-performance
