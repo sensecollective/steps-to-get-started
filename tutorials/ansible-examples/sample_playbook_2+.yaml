@@ -1,0 +1,10 @@
+---
+# http://stackoverflow.com/q/38781813/1332401
+- hosts: localhost
+  connection: local
+  tasks:
+    - shell: |
+             y=(aa bb cc); echo "${{"{"}}#y[@]}"
+      register: result
+    - debug: var=result.stdout
+ 

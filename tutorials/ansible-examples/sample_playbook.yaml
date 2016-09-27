@@ -1,20 +1,66 @@
 ---
-- name: sample
-  hosts: test-host
-  #vars:
-  #  - date: 1
-  tasks:
-    - command: >
-        echo {{ date }}
-      when: date != 1
-      tags:
-        - one
 
-    - command: >
-        date
-      when: date == 1
-      tags:
-        - two
+- hosts: test-host
+  remote_user: root
+  vars_files:
+    - group_vars/main.yaml
+  roles:
+    - role: content
+  
+###########################
+# - name: sample
+#   hosts: "test-host"
+#   vars:
+#     - products: "asa gd"
+#   tasks:
+#     - shell: |
+#         y=(aa bb cc); g=("${!y[@]}"); res=`expr ${g[-1]} + 1`; echo $res
+#       register: r
+#     - debug: msg="{{r.stdout}}"      
+#     - shell: |
+#         echo `expr 2 + "{{r.stdout}}"`
+
+
+###################################
+# - name: sample
+#   hosts: test-host
+#   vars:
+#     - products: [asa, gd]
+#   tasks:
+#     - set_fact:
+#         ncap: 2
+#     - shell: |
+#         echo "{{ ncap }}" 
+#         echo "yo"
+#         ncap=$(expr "{{ ncap }}" + 3)
+#         echo $ncap
+#         echo $(expr "{{ ncap }}" + 3)
+#         echo "{{ ncap }}"
+#         for i in {1..5}; do
+#           echo $i
+#         done
+#       with_indexed_items: "{{ products }}"
+#       register: r
+#     - shell: |
+#         echo "{{ ncap }}" "{{r.results}}" $ncap
+
+###################################
+# - name: sample
+#   hosts: test-host
+#   #vars:
+#   #  - date: 1
+#   tasks:
+#     - command: >
+#         echo {{ date }}
+#       when: date != 1
+#       tags:
+#         - one
+
+#     - command: >
+#         date
+#       when: date == 1
+#       tags:
+#         - two
 
 ###################################
 # - name: test

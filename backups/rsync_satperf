@@ -1,0 +1,12 @@
+#!/bin/bash
+
+SRC_PATH_OR_URL='satperf/'
+DEST_PATH_OR_URL='root@perf54:/root/extra/satperf_upstream'
+
+rsync -azP  --exclude .git/  $SRC_PATH_OR_URL $DEST_PATH_OR_URL
+
+# rsync -azP  $SRC_PATH_OR_URL $DEST_PATH_OR_URL
+
+# rsync -azP  $SRC_PATH_OR_URL $DEST_PATH_OR_URL
+
+# rsync -azP  --exclude ${SRC_PATH_OR_URL%/}/.git/  $SRC_PATH_OR_URL $DEST_PATH_OR_URL

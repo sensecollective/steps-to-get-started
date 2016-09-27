@@ -1,4 +1,10 @@
 ---
-    - shell: ls /root/
-      register: data
+#  - shell: ls /root/
+#    register: data
+
+  - shell: echo "{{ item }}"
+    with_sequence: "count={{ NUMCV_2 }}"
+
+  - shell: echo "{{ item }}"
+    with_items: "{{ products }}"
 ...
