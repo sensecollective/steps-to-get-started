@@ -1,0 +1,61 @@
+
+
+======================
+===== Comment this in /etc/httpd/conf.d/welcome.conf
+# 
+# This configuration file enables the default "Welcome" page if there
+# is no default index page present for the root URL.  To disable the
+# Welcome page, comment out all the lines below. 
+#
+# NOTE: if this file is removed, it will be restored on upgrades.
+#
+# <LocationMatch "^/+$">
+#    Options -Indexes
+#    ErrorDocument 403 /.noindex.html
+#</LocationMatch>
+
+#<Directory /usr/share/httpd/noindex>
+#    AllowOverride None
+#    Require all granted
+#</Directory>
+====================
+
+chmod  755 /home/arcolife/folder/
+ln -s /home/arcolife/folder/ test
+
+======================
+chcon -R unconfined_u:object_r:httpd_sys_content_t:s0 /home/arcolife/folder
+
+
+=======
+=========================== this in /etc/httpd/conf/httpd.conf
+
+# Further relax access to the default document root:
+<Directory "/var/www/html">
+    #
+    # Possible values for the Options directive are "None", "All",
+    # or any combination of:
+    #   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews
+    #
+    # Note that "MultiViews" must be named *explicitly* --- "Options All"
+    # doesn't give it to you.
+    #
+    # The Options directive is both complicated and important.  Please see
+    # http://httpd.apache.org/docs/2.4/mod/core.html#options
+    # for more information.
+    #
+    Options Indexes FollowSymLinks
+    IndexOptions NameWidth=*
+    #
+    # AllowOverride controls what directives may be placed in .htaccess files.
+    # It can be "All", "None", or any combination of the keywords:
+    #   Options FileInfo AuthConfig Limit
+    #
+    AllowOverride None
+
+    #
+    # Controls who can get stuff from this server.
+    #
+    Require all granted
+</Directory>
+===========================

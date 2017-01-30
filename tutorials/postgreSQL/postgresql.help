@@ -1,0 +1,24 @@
+list all dbs: \l
+list all tables: \dt
+list table schema: \d+ dashboard;
+list all sequences: \ds
+list all roleS: \du OR \dg
+List of text search dictionaries: \dFd
+List of text search templates: \dFt
+\? -> list psql commands
+
+===
+
+createuser cloudforms
+psql -h localhost -U postgres -c "CREATE USER grafana WITH PASSWORD 'sarjitsu123';"
+
+createdb vmdb_production
+psql -h localhost -U postgres -c "CREATE DATABASE grafana;"
+
+pg_restore -c -C -v -U root --dbname=vmdb_production -j 6 <path to dbdump>
+
+https://raw.githubusercontent.com/kbrock/bin/master/pkillall
+
+# modify owner on all tables simultaneously in postgresql
+# references: http://stackoverflow.com/questions/1348126/modify-owner-on-all-tables-simultaneously-in-postgresql
+https://raw.githubusercontent.com/kbrock/bin/master/pchown
