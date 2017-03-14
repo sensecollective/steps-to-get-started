@@ -39,3 +39,8 @@ docker run -d <container name>
 
 # get inside the container bash
 docker  run -it  -p :80 <container name> bash
+
+
+## compose
+
+docker-compose exec <service name> <command line>
