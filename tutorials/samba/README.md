@@ -12,9 +12,9 @@ Step 1: (setup win a/c w/ password)
 
 Step 2: follow [this blog to setup shared folder on windows 10](https://www.howtogeek.com/176471/how-to-share-files-between-windows-and-linux/)
 
-Step 3: ensure you have cifs-utils and samba installed on linux
+Step 3: ensure you have cifs-utils installed on linux
 
-
+Step 4:
 ```
 $ mkdir ~/Desktop/Windows-Share/
 
@@ -23,6 +23,21 @@ $ # enter password for windows user a/c when prompted
 
 ```
 
+Step 5: unmount, when done. (run with sudo)
+
+###### NoteToSelf
+I was unable to unmount this, even after forcing the VM to stop. The whole thing got stuck and I tried to `pkill/kill -9` the cifsd/cifsiod processes in vain. I stopped smb.service although that wasn't required and was unrelated. `df -hT / df -k -F cifs` were stuck for a while. I discovered later that it was a CIFS timeout and had to be worked around using [this hack](http://serverfault.com/questions/622238/linux-cifs-samba-mount-hangs-for-several-minutes) - `sudo umount -a -t cifs -l`
+
+```
+mount -v  | grep cifs
+df -k -F cifs
+
+sudo umount /home/arcolife/Desktop/Windows-Share
+
+OR 
+
+sudo umount -a -t cifs -l
+```
 
 ### share linux folder on windows
 
