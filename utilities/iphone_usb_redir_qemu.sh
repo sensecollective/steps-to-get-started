@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# To use iTunes, I had to install it in a Win 10 VM in VMM / Boxes. There are hacks I had to perform to get all funcs to working (ref: `steps-to-get-started/utilities/iphone_usb_redir_qemu.sh`). When I solved usb redir issue with VMM and tried to upgrade iOS, it pegged my Linux host's CPU (100% reproducible); I solved that by re-enabling usbmuxd (which multiplexes connections to Apple devices). I had to disable this because I wasn't able to perform USB redirection since usbmuxd was keeping the device resource busy. I don't know why next time onwards, I had to never disable it again, but.. whatever works atm.
+
+# In another incident, my VM disks dried up because I had enabled iCloud photo sync on the VM while not allocating enough storage space. I could just expand the storage, but rather wanted to share data between Win 10 VM and Linux host. So I read some forums and decided to stick with Samba sharing. Here's how I backed up my iCloud Photos to Linux host: `steps-to-get-started/tutorials/samba` (icloud has disabled downloading multiple photos from their web browser endpoint, and there's no linux client. So I had to follow this route)
+
 # credit: https://ask.fedoraproject.org/en/question/65034/gnome-boxes-usb-forwarding-not-working/
 
 # For redirection to work, the virtual machine must have an USB2 EHCI controller
