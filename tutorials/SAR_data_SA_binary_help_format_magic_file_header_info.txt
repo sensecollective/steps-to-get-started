@@ -1,0 +1,61 @@
+================================
+
+# (Pdb) fm.dump()
+# file_magic:
+# 	sysstat_magic = 0xd596
+# 	format_magic = 0x2173
+# 	sysstat_version 11
+# 	sysstat_patchlevel 1
+# 	sysstat_sublevel 2
+# 	sysstat_extraversion 0
+
+# (Pdb) fp
+# <_io.BufferedReader name='/home/arcolife/Documents/sar_samples/test/sa10'>
+
+# (Pdb) fh.dump(magic)
+# file_header (0x2173):
+# 	sa_ust_time 288 1970-01-01 00:04:48
+# 	sa_last_cpu_nr 0
+# 	sa_act_nr 0
+# 	sa_vol_act_nr 0
+# 	sa_day <sysstat.c_ubyte_Array_4 object at 0x7f433d5ae9d8>
+# 	sa_month <sysstat.c_ubyte_Array_4 object at 0x7f433d5ae9d8>
+# 	sa_year <sysstat.c_ubyte_Array_4 object at 0x7f433d5ae9d8>
+# 	sa_sizeof_long b'\x00'
+# 	sa_sysname b''
+# 	sa_nodename b''
+# 	sa_release b'ost.localdomain'
+# 	sa_machine b'200.fc22.x86_64'
+
+================================
+
+# In [27]: print(a)
+# <function a at 0x7f1178cfb158>
+#
+# In [28]: repr(a)
+# Out[28]: '<function a at 0x7f1178cfb158>'
+
+================================
+
+    # In [12]: from ctypes import sizeof
+    #
+    # In [13]: sizeof(c_int)
+    # Out[13]: 4
+    #
+    # In [14]: sizeof(c_ubyte)
+    # Out[14]: 1
+    #
+    # In [15]: sizeof(c_uint8)
+    # Out[15]: 1
+    #
+    # In [16]: sizeof(c_char)
+    # Out[16]: 1
+    #
+    # In [17]: #from ctypes import Structure, c_int, c_uint, c_ushort, c_uint8, c_ulong, c_char, c_ulonglong, c_ubyte
+    #
+    # In [18]: sizeof(c_ushort)
+    # Out[18]: 2
+    #
+    # In [19]: sizeof(c_ulong)
+    # Out[19]: 8
+================================
