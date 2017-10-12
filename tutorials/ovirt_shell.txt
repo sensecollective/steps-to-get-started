@@ -1,0 +1,66 @@
+ovirt-shell --url https://<hostname>/ovirt-engine/api -u admin@internal --insecure
+
+[oVirt shell (connected)]# list vms --query "name=vm*"  --show-all | egrep '^name |guest_info-ips-ip-address.*10' > vms_all_info
+
+egrep ' 10\.' -B 1 vms_all_info | sed s/--//g | sed '/^\s*$/d' > refined_ocp_ips
+
+
+###########
+
+ovirt-shell --url https://<hostname>/ovirt-engine/api -u admin@internal --insecure -E "list vms --query "name=vm*" --show-all | egrep '^name |guest_info-ips-ip-address.*10'"
+
+===
+
+source /etc/ovirt-engine-dwh/ovirt-engine-dwhd.conf.d/10-setup-database.conf 
+export PGPASSWORD=$ENGINE_DB_PASSWORD
+
+unlock disks:
+/usr/share/ovirt-engine/setup/dbutils
+
+=======================
+$ ./unlock_entity.sh -h
+$ PGPASSWORD=$ENGINE_DB_PASSWORD ./unlock_entity.sh -t disk -q -u $ENGINE_DB_USER
+
+=======================
+[root@rhevm dbutils]# PGPASSWORD=$ENGINE_DB_PASSWORD ./unlock_entity.sh -t disk -u $ENGINE_DB_USER -r -v f0b9ac49-1f56-47de-a06d-a98009e6ec07
+Caution, this operation may lead to data corruption and should be used with care. Please contact support prior to running this command
+Are you sure you want to proceed? [y/n]
+y
+select fn_db_unlock_disk('f0b9ac49-1f56-47de-a06d-a98009e6ec07');
+select fn_db_unlock_disk('f0b9ac49-1f56-47de-a06d-a98009e6ec07');
+ 
+
+
+					insert into audit_log(
+						log_time,
+						log_type_name,
+						log_type,
+						severity,
+						message
+					)
+					values(
+						now(),
+						'USER_RUN_UNLOCK_ENTITY_SCRIPT',
+						2024,
+						10,
+						'./unlock_entity.sh :  System user root run manually unlock_entity script on entity [type,id] [disk,f0b9ac49-1f56-47de-a06d-a98009e6ec07] with db user engine'
+					)
+				
+INSERT 0 1
+unlock disk f0b9ac49-1f56-47de-a06d-a98009e6ec07 completed successfully
+
+
+=======================
+
+https://access.redhat.com/solutions/396753
+
+================
+
+## update vm status to ONLINE, if Unknown (?) in RHVM
+
+# psql  -d engine -U engine -h localhost -W 
+
+engine=> update vm_dynamic set status = 1 where vm_guid = (select vm_guid from vm_static where vm_name = 'vm800_0');
+UPDATE 1
+
+
