@@ -7,4 +7,10 @@
 
   - shell: echo "{{ item }}"
     with_items: "{{ products }}"
+    # failed_when: "token_dep|failed"
+  
+# - debug:
+#     var: token_dep
+#     verbosity: 3
+    
 ...

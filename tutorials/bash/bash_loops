@@ -1,0 +1,23 @@
+for i in $(seq 145 2 209); do echo 10.12.70.$i; done
+
+# install jq package for this (regex cmdline lib for tux)
+
+echo 'A:1|B:1|C:1' |  jq -Rc 'split("|") | map( split(":") | {(.[0]): .[1]} ) | add'
+
+# declare -A labels
+
+# for x in $(seq 1 20); do labels["foo$x"]=bar$x; done
+# for key in ${!labels[@]}; do echo ${key} ${labels[${key}]}; done
+
+# below won't work as it doesn't contain escaped characters 
+# python -c 'for i,j in zip(la.split(),lb.split()): print('"%s":"%s", '%(i,j), end='')' ${!labels[@]} ${labels[@]}
+# for i,j in zip(la.split(),lb.split()): print('"%s":"%s", '%(i,j), end='')
+
+# # requires jq package
+# labels='foo:bar'
+# for x in $(seq 1 19); do labels=$labels"|foo$x:bar$x"; done
+# labels=$(echo $labels | jq -Rc 'split("|") | map( split(":") | {(.[0]): .[1]} ) | add')
+# echo $labels
+
+labels=$(./label_gen.py)
+
