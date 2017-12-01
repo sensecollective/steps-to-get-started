@@ -1,3 +1,11 @@
+### Data warehousing for RHVM 
+
+`psql -d ovirt_engine_history -h localhost -U ovirt_engine_history`
+
+- password in /etc/ovirt-engine-dwh/ovirt-engine-dwhd.conf.d/10-setup-database.conf
+- help https://gist.github.com/arcolife/ded23346d90a557ea69459c2eefa319e#gistcomment-2165438
+
+
 list all dbs: \l
 list all tables: \dt
 list table schema: \d+ dashboard;
