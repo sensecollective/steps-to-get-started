@@ -52,6 +52,20 @@ Size of binary after stripping symbols from ELF :-
  -> 6224
 Attempting to extract symbols from *stripped* binary file
 nm: my_prog: no symbols
+Compiling again and overwriting my_prog
+my_prog.c: In function ‘main’:
+my_prog.c:5:6: warning: implicit declaration of function ‘strcmp’ [-Wimplicit-function-declaration]
+   if(strcmp(str1,str2)) {
+      ^~~~~~
+reading from readelf with -s instead of nm
+info stored in ./my_prog_readelf_info
+stripping with -s
+..and reading symbols from readelf again
+info stored in ./my_prog_readelf_info_stripped
+storing addresses of .bss, .text, .data for my_prog
+stored in ./addresses_of_memory_regions 
+   text	   data	    bss	    dec	    hex	filename
+   1319	    548	      4	   1871	    74f	my_prog
 ```
 
 ## References

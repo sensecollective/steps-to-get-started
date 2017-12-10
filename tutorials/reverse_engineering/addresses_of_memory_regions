@@ -1,0 +1,31 @@
+my_prog  :
+section               size       addr
+.interp               0x1c   0x400238
+.note.ABI-tag         0x20   0x400254
+.note.gnu.build-id    0x24   0x400274
+.gnu.hash             0x1c   0x400298
+.dynsym               0x78   0x4002b8
+.dynstr               0x44   0x400330
+.gnu.version           0xa   0x400374
+.gnu.version_r        0x20   0x400380
+.rela.dyn             0x30   0x4003a0
+.rela.plt             0x30   0x4003d0
+.init                 0x17   0x400400
+.plt                  0x30   0x400420
+.text                0x1b2   0x400450
+.fini                  0x9   0x400604
+.rodata               0x3b   0x400610
+.eh_frame_hdr         0x34   0x40064c
+.eh_frame             0xf4   0x400680
+.init_array            0x8   0x600e08
+.fini_array            0x8   0x600e10
+.jcr                   0x8   0x600e18
+.dynamic             0x1d0   0x600e20
+.got                  0x10   0x600ff0
+.got.plt              0x28   0x601000
+.data                  0x4   0x601028
+.bss                   0x4   0x60102c
+.comment              0x2c        0x0
+Total                0x77b
+
+

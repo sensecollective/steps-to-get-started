@@ -1,3 +1,4 @@
 my_prog_*
 !my_prog_strings
 !my_prog_symbols
+!my_prog_readelf*
