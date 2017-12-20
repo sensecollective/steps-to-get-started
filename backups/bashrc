@@ -1,0 +1,35 @@
+alias gitshow='git diff-tree --no-commit-id --name-only -r HEAD'
+alias gitdiff='git diff --cached'
+
+alias bpy="python setup.py sdist bdist_wheel"
+alias upy="twine upload dist/*"
+alias clpy="rm -rf *.egg-info build/ dist/"
+
+alias ..='cd ..'
+alias ima='docker images'
+
+alias tkn='cat ~/.git_token; echo'
+
+# export PATH=$PATH:$GOPATH/bin
+
+# added by Miniconda3 installer
+# export PATH="/home/arcolife/miniconda3/bin:$PATH"
+
+alias vid='youtube-dl -i --extract-audio --audio-format mp3 --audio-quality 0'
+alias y='youtube-dl -i'
+alias dockviz='docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz'
+
+alias ll='ls -alh'
+alias sar='LANG=C sar'
+
+
+if [ -f `which powerline-daemon` ]; then
+  powerline-daemon -q
+  POWERLINE_BASH_CONTINUATION=1
+  POWERLINE_BASH_SELECT=1
+  . /usr/share/powerline/bash/powerline.sh
+fi
+
+# vim:ts=4:sw=4
+
+
