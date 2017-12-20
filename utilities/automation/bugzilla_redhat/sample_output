@@ -1,0 +1,129 @@
+[Bug 1337523] [RFE] show pool ID for a product
+[Bug 1348599] Dashboard loading takes about 7 seconds depending on Number of errata & hosts.
+[Bug 1493179] MiqEmsMetricsProcessorWorker running but not processing events
+[Bug 1476371] CFME has multiple issues adding OSP 8 and OSP 10 as providers with >100 projects/tenants via AD CF User
+[Bug 1511877] Possible Memory Leak in Refresh Worker
+[Bug 1511859] Possible Memory Leak in MetricsCollector Worker
+[Bug 1511890] Possible Memory Leak in MiqGenericWorker
+[Bug 1378975] Swap observed due to puma on UI appliances, causing unresponsive UI
+[Bug 1479339] Memory leak in MetricsProcessor Worker
+[Bug 1511897] Possible Memory Leak in MetricsProcessor Worker
+[Bug 1489277] CloudForms 4.2  PostgreSQL database tuning
+[Bug 1479356] Large MiqServer process leads to large generic workers that get killed
+[Bug 1526474] Large MiqServer process leads to large generic workers that get killed
+[Bug 1527093] Large MiqServer process leads to large generic workers that get killed
+[Bug 1526473] Large MiqServer process leads to large generic workers that get killed
+[Bug 1456775] Possible memory leak in MetricsCollectorWorker
+[Bug 1458392] MetricsCollectorWorker memory exceeded and memory threshold
+[Bug 1375293] Relationships filter_by_resource_type scope
+[Bug 1440950] Unable to collect inventory for 40,000 container images, results in kubeclient timeout
+[Bug 1503716] 500 Internal Server Error uninitialized constant StorageManager
+[Bug 1463801] qpid dispatch router on capsule leaking memory at scale
+[Bug 1457765] Default capture_threshold value for OpenShift object types is too low
+[Bug 1405436] Poor UI performance in the global region for services: viewing the list of services
+[Bug 1410374] Unable to perform inventory refresh in CFME 57017 with OCP as a provider
+[Bug 1412847] Swift Manager refresh fails with "undefined method `each' for nil:NilClass"
+[Bug 1403758] no option to add Hawkular under metrics section while adding Openshift provider through REST API
+[Bug 1353700] Worker nice_delta is not set in 5.6.0.13
+[Bug 1406733] server roles MiqSmartProxyWorker and MiqEmsMetricsProcessorWorker fail to start
+[Bug 1374839] Metric::Target capture_vm_targets
+[Bug 1375195] VirtualDelegate: Fix foreign key for belongs_to
+[Bug 1375319] In MiqExpression, leverage virtual columns w/ arel
+[Bug 1375348] ArVirtual - Ownership uses virtual attributes / delegates
+[Bug 1375616] Metric::Target capture_vm_targets
+[Bug 1376175] ArVirtual - Ownership uses virtual attributes / delegates
+[Bug 1519103] collector worker not able to capture metrics from Heketi Container
+[Bug 1375346] Take 2: Speed up "VMs & Instances in My LDAP Group" filter in /vm_or_template/explorer
+[Bug 1376140] Memoize image_path helper in build_tags_tree
+[Bug 1376177] Take 2: Speed up "VMs & Instances in My LDAP Group" filter in /vm_or_template/explorer
+[Bug 1366231] qpid dispatch router crashes when applying errata to a large number of hosts via Satellite 6.2,
+[Bug 1493152] ActiveRecord Validation failed : Name should be unique per parent
+[Bug 1368718] qpid dispatch router on capsule leaking memory at scale
+[Bug 1414508] refresh of OCP 3.2 crashes with permission error in recovery
+[Bug 1417974] refresh of OCP 3.2 crashes with permission error in recovery
+[Bug 1405937] Refresh failed when adding an OSE provider
+[Bug 1518682] Refresh of specific OCP provider fails from 'ems_container/show_list' page
+[Bug 1321667] Customer reporting growth of sessions table to an enormous size and postgresql logs don't indicate any auto-vacuum activity is happening
+[Bug 1364501] Customer reporting growth of sessions table to an enormous size and postgresql logs don't indicate any auto-vacuum activity is happening
+[Bug 1296638] Metrics Collector Workers memory threshold displayed as 200MiB in the Web UI, however they exit at 500MiB threshold
+[Bug 1337159] db:migrate on large database takes long time and large amount of memory
+[Bug 1341321] 5.6.0.8 memory usage is ~370MiB higher than 5.5.4.2 when idle
+[Bug 1227008] [Scale] perf_capture_timer message timeout, cycles Generic/Priority Workers
+[Bug 1244905] Scheduling of C&U Perf Collections exceeds 10 minutes causing indeterminate number of elements to not have C&U collections performed
+[Bug 1251259] [Scale] MiqWidget.generate_content at large scale consumes tremendous amount of memory and times - out
+[Bug 1319890] performance collection issues
+[Bug 1346988] Scheduling of C&U Perf Collections exceeds 10 minutes causing indeterminate number of elements to not have C&U collections performed
+[Bug 1346999] performance collection issues
+[Bug 1405454] Poor UI performance in the global region for services: going from a VM to a service
+[Bug 1411883] Poor UI performance in the global region for services: viewing the list of services
+[Bug 1411887] Poor UI performance in the global region for services: going from a VM to a service
+[Bug 1412443] Poor UI performance in the global region for services: going from a VM to a service
+[Bug 1478428] Default capture_threshold value for OpenShift object types is too low
+[Bug 1342283] Higher static CPU Usage on 5.6.0.9 vs 5.5.4.2 evmserver.rb vs MIQ Server
+[Bug 1281855] MiqEmsRefreshCoreWorker exits on xlarge vmware provider on 5.5
+[Bug 1357003] Workers Reset due to extra memory usage during initial C&U capture when connected to RHEVM environments
+[Bug 1281921] Worker exceeding memory causes more workers to spawn before worker exceeding threshold is exited
+[Bug 1420284] [CFME] db:migrate warning 'supports_feature_mixin.rb:103: warning: key :terminate is duplicated and overwritten on line 111'
+
+
+...querying URL: https://bugzilla.redhat.com/jsonrpc.cgi?method=Bug.get&params=[{"ids":[1511897]}]
+{'error': None,
+ 'id': 'https://bugzilla.redhat.com/',
+ 'result': {'bugs': [{'alias': [],
+                      'assigned_to': 'Nick LaMuro',
+                      'blocks': [],
+                      'cc': ['Archit Sharma',
+                             'Himanshu Roy',
+                             'John Hardy',
+                             'Loic Avenel',
+                             'Oleg Barenboim',
+                             'Pradeep Kumar Surisetty'],
+                      'cf_atomic': None,
+                      'cf_category': '---',
+                      'cf_clone_of': None,
+                      'cf_cloudforms_team': 'CFME Core',
+                      'cf_crm': '',
+                      'cf_doc_type': 'If docs needed, set a value',
+                      'cf_documentation_action': '---',
+                      'cf_environment': '',
+                      'cf_fixed_in': '',
+                      'cf_mount_type': '---',
+                      'cf_ovirt_team': '---',
+                      'cf_regression_status': '---',
+                      'cf_release_notes': '',
+                      'cf_story_points': '---',
+                      'cf_type': 'Bug',
+                      'cf_verified_branch': '',
+                      'classification': 'Red Hat',
+                      'component': ['Performance'],
+                      'creation_time': '2017-11-10T11:36:00Z',
+                      'creator': 'Himanshu Roy',
+                      'depends_on': [],
+                      'docs_contact': '',
+                      'dupe_of': None,
+                      'groups': [],
+                      'id': 1511897,
+                      'is_cc_accessible': True,
+                      'is_confirmed': True,
+                      'is_creator_accessible': True,
+                      'is_open': True,
+                      'keywords': [],
+                      'last_change_time': '2017-12-12T15:59:02Z',
+                      'op_sys': 'Unspecified',
+                      'platform': 'Unspecified',
+                      'priority': 'high',
+                      'product': 'Red Hat CloudForms Management Engine',
+                      'qa_contact': 'Dave Johnson',
+                      'resolution': '',
+                      'see_also': [],
+                      'severity': 'medium',
+                      'status': 'ASSIGNED',
+                      'summary': 'Possible Memory Leak in MetricsProcessor '
+                                 'Worker',
+                      'target_milestone': 'GA',
+                      'target_release': ['5.9.0'],
+                      'url': '',
+                      'version': ['5.9.0'],
+                      'whiteboard': 'testathon'}],
+            'faults': []}}
+

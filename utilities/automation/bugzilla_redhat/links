@@ -1,0 +1,17 @@
+https://bugzilla.redhat.com/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=POST&bug_status=MODIFIED&bug_status=ON_DEV&bug_status=ON_QA&bug_status=VERIFIED&bug_status=RELEASE_PENDING&bug_status=CLOSED&list_id=8239133&product=Red%20Hat%20CloudForms%20Management%20Engine&query_format=advanced&version=5.6.0&version=5.7.0&version=5.8.0&version=5.9.0&version=6.0.0
+
+
+https://bugzilla.redhat.com/buglist.cgi?product=Red%20Hat%20CloudForms%20Management%20Engine&query_format=advanced
+
+https://bugzilla.redhat.com/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=POST&bug_status=MODIFIED&bug_status=ON_DEV&bug_status=ON_QA&bug_status=VERIFIED&bug_status=RELEASE_PENDING&bug_status=CLOSED&email1=arcsharm@redhat.com&emailassigned_to1=1&emailcc1=1&emailreporter1=1&emailtype1=exact&query_format=advanced&ctype=rss
+
+https://bugzilla.redhat.com/jsonrpc.cgi?method=Bug.get&params=[{"ids":[1511897]}]
+
+ALL 
+https://bugzilla.redhat.com/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=POST&bug_status=MODIFIED&bug_status=ON_DEV&bug_status=ON_QA&bug_status=VERIFIED&bug_status=RELEASE_PENDING&bug_status=CLOSED&limit=0&list_id=8239133&order=bug_status%2Cext_bz_list%20DESC%2Ccomponent%2Cbug_id%20DESC&product=Red%20Hat%20CloudForms%20Management%20Engine&query_format=advanced&version=5.6.0&version=5.7.0&version=5.8.0&version=5.9.0&version=6.0.0
+
+all excluding RFE and with relevant components 
+https://bugzilla.redhat.com/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=POST&bug_status=MODIFIED&bug_status=ON_DEV&bug_status=ON_QA&bug_status=VERIFIED&bug_status=RELEASE_PENDING&bug_status=CLOSED&component=API&component=Appliance&component=Automate&component=C%26U%20Capacity%20and%20Utilization&component=Performance&component=Providers&component=Provisioning&component=Replication&component=Reporting&component=SmartState%20Analysis&limit=0&list_id=8239177&order=bug_status%2Cext_bz_list%20DESC%2Ccomponent%2Cbug_id%20DESC&product=Red%20Hat%20CloudForms%20Management%20Engine&query_format=advanced&short_desc=RFE&short_desc_type=notregexp&version=5.6.0&version=5.7.0&version=5.8.0&version=5.9.0&version=6.0.0
+
+all rss
+https://bugzilla.redhat.com/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=POST&bug_status=MODIFIED&bug_status=ON_DEV&bug_status=ON_QA&bug_status=VERIFIED&bug_status=RELEASE_PENDING&bug_status=CLOSED&component=API&component=Appliance&component=Automate&component=C%26U%20Capacity%20and%20Utilization&component=Performance&component=Providers&component=Provisioning&component=Replication&component=Reporting&component=SmartState%20Analysis&limit=0&list_id=8239177&order=bug_status%2Cext_bz_list%20DESC%2Ccomponent%2Cbug_id%20DESC&product=Red%20Hat%20CloudForms%20Management%20Engine&query_format=advanced&short_desc=RFE&short_desc_type=notregexp&version=5.6.0&version=5.7.0&version=5.8.0&version=5.9.0&version=6.0.0&ctype=rss

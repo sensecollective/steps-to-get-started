@@ -1,0 +1,31 @@
+[Bug 1251154] Provider refresh duration runs so long that multiple ems_worker processes for the same provider become active concurrently
+[Bug 1251259] [Scale] MiqWidget.generate_content at large scale consumes tremendous amount of memory and times - out
+[Bug 1281855] MiqEmsRefreshCoreWorker exits on xlarge vmware provider on 5.5
+[Bug 1281921] Worker exceeding memory causes more workers to spawn before worker exceeding threshold is exited
+[Bug 1337159] db:migrate on large database takes long time and large amount of memory
+[Bug 1342283] Higher static CPU Usage on 5.6.0.9 vs 5.5.4.2 evmserver.rb vs MIQ Server
+[Bug 1375293] Relationships filter_by_resource_type scope
+[Bug 1378975] Swap observed due to puma on UI appliances, causing unresponsive UI
+[Bug 1411887] Poor UI performance in the global region for services: going from a VM to a service
+[Bug 1412443] Poor UI performance in the global region for services: going from a VM to a service
+[Bug 1412729] Provider refresh duration runs so long that multiple ems_worker processes for the same provider become active concurrently
+[Bug 1440145] [RFE] Allow multiple Nic selection while provisioning VMs on RHV
+[Bug 1456775] Possible memory leak in MetricsCollectorWorker
+[Bug 1465395] Frequent restarts for CinderManager::EventCatcher worker when doing refreshes with OpenStack Provider
+[Bug 1472258] Possible Memory Leak in RefreshWorker
+[Bug 1479339] Memory leak in MetricsProcessor Worker
+[Bug 1479356] Large MiqServer process leads to large generic workers that get killed
+[Bug 1486224] SUI fails to change group
+[Bug 1493152] ActiveRecord Validation failed : Name should be unique per parent
+[Bug 1493179] MiqEmsMetricsProcessorWorker running but not processing events
+[Bug 1503716] 500 Internal Server Error uninitialized constant StorageManager
+[Bug 1511859] Possible Memory Leak in MetricsCollector Worker
+[Bug 1511877] Possible Memory Leak in Refresh Worker
+[Bug 1511890] Possible Memory Leak in MiqGenericWorker
+[Bug 1511897] Possible Memory Leak in MetricsProcessor Worker
+[Bug 1515906] Performance regression in 5.9.0 while provisioning of 50 vms on RHEV-3.5
+[Bug 1518682] Refresh of specific OCP provider fails from 'ems_container/show_list' page
+[Bug 1520810] [Provider] RHV provider refresh doesn't provide host & VM details
+[Bug 1526473] Large MiqServer process leads to large generic workers that get killed
+[Bug 1526474] Large MiqServer process leads to large generic workers that get killed
+[Bug 1527093] Large MiqServer process leads to large generic workers that get killed
