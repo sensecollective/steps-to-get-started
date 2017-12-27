@@ -1,0 +1,997 @@
+#+TITLE: Problems with Using Aggregations in ElasticSearch
+
+#+AUTHOR: Peter Portante
+
+
+* Summary
+
+Using aggregations to gather extended statistics and percentile tables for an
+unbounded range of the time series data seems to the root cause of the "Java:
+out of memory" errors we see with ElasticSearch on
+perf34.example.com. That is to say, it is gather data from
+every sar index to generate its results.
+
+It is not clear why this is a problem, given what ElasticSearch is advertised
+to support (at least based on our understand of it). This document is an
+attempt to record the behaviors and maybe along the way some of our
+assumptions to see if we can understand it better.
+
+If one constrains the query to use a small set of indices, 1 - 10, the query
+fares much better, about 2 - 3 minutes to get results for the target host
+perf92 (which is pretty much worse case).
+
+
+* The Problem
+
+At the time of this writing, perf34.example.com hosts our
+ElasticSearch instance. It sports 256 GB of memory, 4 sockets, 10 cores each
+for a total of 40 cores.
+
+The following query (see below) will cause the ElasticSearch instance to become
+completely unusable when applied to the "vos.sar" index alias.
+
+Please *do not* actually execute this query again es-perf44:
+
+#+BEGIN_EXAMPLE
+curl -XPOST http://es-perf44.example.com/vos.sar/_search -d @bad-query.json > response.json
+#+END_EXAMPLE
+
+#+BEGIN_SRC json
+{
+    "size": 1000,
+    "fields": [
+        "_timestamp",
+        "timestamp.date",
+        "timestamp.time",
+        "queue.ldavg-1",
+        "queue.ldavg-5",
+        "queue.ldavg-15",
+        "memory.memfree",
+        "memory.memused",
+        "memory.memused-percent",
+        "memory.cached",
+        "cpu-load.cpu",
+        "cpu-load.user",
+        "cpu-load.system",
+        "cpu-load.iowait",
+        "cpu-load.idle",
+        "disk.disk-device",
+        "disk.await",
+        "disk.rd_sec",
+        "disk.wr_sec",
+        "disk.avgrq-sz",
+        "disk.avgqu-sz",
+        "network.net-dev.iface",
+        "network.net-dev.rxkB",
+        "network.net-dev.txkB"
+    ],
+    "query": {
+        "filtered": {
+            "filter": {
+                "and": {
+                    "filters": [
+                        {
+                            "bool": {
+                                "must": {
+                                    "term": {
+                                        "_metadata.nodename": "perf92.example.com"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "range": {
+                                "_timestamp": {
+                                    "lt": "now"
+                                },
+                                "execution": "fielddata",
+                                "_cache": "false"
+                            }
+                        }
+                    ],
+                    "_cache": "false"
+                }
+            }
+        }
+    },
+    "aggs": {
+        "loadavg_1_percentile": {
+            "percentiles": {
+                "field": "queue.ldavg-1"
+            }
+        },
+        "ex_stats": {
+            "extended_stats": {
+                "field": "queue.ldavg-1"
+            }
+        },
+        "mem_used_percentile": {
+            "percentiles": {
+                "field": "memory.memused-percent"
+            }
+        },
+        "cpu_percentile": {
+            "nested": {
+                "path": "cpu-load"
+            },
+            "aggs": {
+                "percpu": {
+                    "terms": {
+                        "field": "cpu-load.cpu",
+                        "size": 100
+                    },
+                    "aggs": {
+                        "user": {
+                            "percentiles": {
+                                "field": "user"
+                            }
+                        },
+                        "system": {
+                            "percentiles": {
+                                "field": "system"
+                            }
+                        },
+                        "iowait": {
+                            "percentiles": {
+                                "field": "iowait"
+                            }
+                        },
+                        "idle": {
+                            "percentiles": {
+                                "field": "idle"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "disk_percentile": {
+            "nested": {
+                "path": "disk"
+            },
+            "aggs": {
+                "perdisk": {
+                    "terms": {
+                        "field": "disk.disk-device",
+                        "size": 100
+                    },
+                    "aggs": {
+                        "await": {
+                            "percentiles": {
+                                "field": "await"
+
+                            }
+                        },
+                        "rd_sec": {
+                            "percentiles": {
+                                "field": "rd_sec"
+                            }
+                        },
+                        "wr_sec": {
+                            "percentiles": {
+                                "field": "wr_sec"
+                            }
+                        },
+                        "avgrq_size": {
+                            "percentiles": {
+                                "field": "avgrq-sz"
+                            }
+                        },
+                        "avgqu_size": {
+                            "percentiles": {
+                                "field": "avgqu-sz"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "network_percentile": {
+            "nested": {
+                "path": "network.net-dev"
+            },
+            "aggs": {
+                "pernic": {
+                    "terms": {
+                        "field": "network.net-dev.iface",
+                        "size": 100
+                    },
+                    "aggs": {
+                        "receive": {
+                            "percentiles": {
+                                "field": "rxkB"
+                            }
+                        },
+                        "send": {
+                            "percentiles": {
+                                "field": "txkB"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+#+END_SRC
+
+NOTE: the nodename in the query, perf92, has 200+ block devices attached to
+it, which make it a good upper-bound candidate for making sure these queries
+work in most cases.
+
+
+** Problem #1: Unbounded Date Range
+
+The first problem stems from the time filter, where it is selecting every
+document that has a timestamp that is less than the timestamp of the query
+itself. For hosts that have lots of sar data, there can be upwards of a
+billion records to consider (yes, billion: 8,600 10 sec sar records a day,
+times 365+ days, times the # of nested documents for CPUs, nics, and block
+devices).
+
+By bounding the date range to one day, the query will complete within 2-3
+minutes, returning just 1,000 records still, but aggregating over the full set
+of matching documents, which in this case, is around 8,640 (24 hours of 10
+second sar data).
+
+Try:
+
+#+BEGIN_EXAMPLE
+curl -XPOST http://es-perf44.example.com/vos.sar-20140731,vos.sar-20140801/_search?search_type=count -d @good-query.json > response.json
+#+END_EXAMPLE
+
+#+BEGIN_SRC json
+{
+    "size": 1000,
+    "fields": [
+        "_timestamp",
+        "timestamp.date",
+        "timestamp.time",
+        "queue.ldavg-1",
+        "queue.ldavg-5",
+        "queue.ldavg-15",
+        "memory.memfree",
+        "memory.memused",
+        "memory.memused-percent",
+        "memory.cached",
+        "cpu-load.cpu",
+        "cpu-load.user",
+        "cpu-load.system",
+        "cpu-load.iowait",
+        "cpu-load.idle",
+        "disk.disk-device",
+        "disk.await",
+        "disk.rd_sec",
+        "disk.wr_sec",
+        "disk.avgrq-sz",
+        "disk.avgqu-sz",
+        "network.net-dev.iface",
+        "network.net-dev.rxkB",
+        "network.net-dev.txkB"
+    ],
+    "query": {
+        "filtered": {
+            "filter": {
+                "and": [
+                    {
+                        "term": {
+                            "_metadata.nodename": "perf92.example.com"
+                        }
+                    },
+                    {
+                        "range": {
+                            "_timestamp": {
+                                "lt": "2014-08-01T00:00:00",
+                                "gt": "2014-07-31T00:00:00"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "aggs": {
+        "loadavg_1_percentile": {
+            "percentiles": {
+                "field": "queue.ldavg-1"
+            }
+        },
+        "ex_stats": {
+            "extended_stats": {
+                "field": "queue.ldavg-1"
+            }
+        },
+        "mem_used_percentile": {
+            "percentiles": {
+                "field": "memory.memused-percent"
+            }
+        },
+        "cpu_percentile": {
+            "nested": {
+                "path": "cpu-load"
+            },
+            "aggs": {
+                "percpu": {
+                    "terms": {
+                        "field": "cpu-load.cpu",
+                        "size": 513
+                    },
+                    "aggs": {
+                        "user": {
+                            "percentiles": {
+                                "field": "user"
+                            }
+                        },
+                        "system": {
+                            "percentiles": {
+                                "field": "system"
+                            }
+                        },
+                        "iowait": {
+                            "percentiles": {
+                                "field": "iowait"
+                            }
+                        },
+                        "idle": {
+                            "percentiles": {
+                                "field": "idle"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "disk_percentile": {
+            "nested": {
+                "path": "disk"
+            },
+            "aggs": {
+                "perdisk": {
+                    "terms": {
+                        "field": "disk.disk-device",
+                        "size": 2048
+                    },
+                    "aggs": {
+                        "await": {
+                            "percentiles": {
+                                "field": "await"
+
+                            }
+                        },
+                        "rd_sec": {
+                            "percentiles": {
+                                "field": "rd_sec"
+                            }
+                        },
+                        "wr_sec": {
+                            "percentiles": {
+                                "field": "wr_sec"
+                            }
+                        },
+                        "avgrq_size": {
+                            "percentiles": {
+                                "field": "avgrq-sz"
+                            }
+                        },
+                        "avgqu_size": {
+                            "percentiles": {
+                                "field": "avgqu-sz"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "network_percentile": {
+            "nested": {
+                "path": "network.net-dev"
+            },
+            "aggs": {
+                "pernic": {
+                    "terms": {
+                        "field": "network.net-dev.iface",
+                        "size": 2048
+                    },
+                    "aggs": {
+                        "receive": {
+                            "percentiles": {
+                                "field": "rxkB"
+                            }
+                        },
+                        "send": {
+                            "percentiles": {
+                                "field": "txkB"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+#+END_SRC
+
+This is still a lot longer than what we want or need.  We'd like to see
+reports generated in a few seconds, or at most in 10s of seconds, but not
+minutes.
+
+Additionally, the graphs and reports we want to generate should probably cover
+about a weeks worth of data, which is close to 60,000 records at 10 sec
+intervals, which is about 650+ MB of data for the resulting query above. As a
+separate consideration, we'll need to sub-sample the resulting data to make it
+applicable.
+
+Finally, we'll need to be able to write queries that can return that data
+relatively quickly.
+
+
+** Problem #2: The Aggregation Behavior is not Understood
+
+The second problem is that the measured cost of the aggregation does not
+appear to be on order of the cost of the query itself.  That is to say a
+query that matches 8,640 documents, and return all of those matching
+documents, not just the first 1,000, takes only 30 seconds to run.
+
+If you read the scoping document for ElasticSearch
+(http://www.elasticsearch.org/guide/en/elasticsearch/guide/current/_scoping_aggregations.html),
+you'll see that it cleary states that aggregations are scoped to documents
+that match the query results. However, we have not been able to get a query
+that includes the above aggregation to respond in less than 10 minutes.
+
+For right now, using aggregations on cpu, disks, and nics seems too costly.
+
+
+* Some Investigations
+
+The following is some documentation on a set of quick experiments to see how
+things are behaving with respect to aggregations. No conclusions can be drawn
+just yet.
+
+
+** Query, No Aggregations, 1,000 records returned, unsorted (< 1 min, < 1 sec warmed up)
+
+To start with, let's perform the above query for 1,000 records without the
+aggregations (yes, it is safe to run this):
+
+#+BEGIN_EXAMPLE
+curl -XPOST http://es-perf44.example.com/vos.sar/_search -d @query-only.json > response.json
+#+END_EXAMPLE
+
+#+BEGIN_SRC json
+{
+    "size": 1000,
+    "fields": [
+        "_timestamp",
+        "timestamp.date",
+        "timestamp.time",
+        "queue.ldavg-1",
+        "queue.ldavg-5",
+        "queue.ldavg-15",
+        "memory.memfree",
+        "memory.memused",
+        "memory.memused-percent",
+        "memory.cached",
+        "cpu-load.cpu",
+        "cpu-load.user",
+        "cpu-load.system",
+        "cpu-load.iowait",
+        "cpu-load.idle",
+        "disk.disk-device",
+        "disk.await",
+        "disk.rd_sec",
+        "disk.wr_sec",
+        "disk.avgrq-sz",
+        "disk.avgqu-sz",
+        "network.net-dev.iface",
+        "network.net-dev.rxkB",
+        "network.net-dev.txkB"
+    ],
+    "query": {
+        "filtered": {
+            "filter": {
+                "and": {
+                    "filters": [
+                        {
+                            "bool": {
+                                "must": {
+                                    "term": {
+                                        "_metadata.nodename": "perf92.example.com"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "range": {
+                                "_timestamp": {
+                                    "lt": "now"
+                                },
+                                "execution": "fielddata",
+                                "_cache": "false"
+                            }
+                        }
+                    ],
+                    "_cache": "false"
+                }
+            }
+        }
+    }
+}
+#+END_SRC
+
+This might take a few seconds initially, but usually runs in less than a
+second.
+
+
+** Simple Aggregation Counting Hostnames (< 1 min, < 1 sec warmed up)
+
+Next, let's pursue a simpler aggregation to see how it fairs. The following
+query took 33 seconds against the vos.sar index alias from a cold reboot of
+the ES service (systemctl restart elasticsearch), but less than 1 second with
+a warmed up cache:
+
+#+BEGIN_EXAMPLE
+curl -XPOST http://es-perf44.example.com/vos.sar/_search?search_type=count -d @nodename-agg.json > response.json
+#+END_EXAMPLE
+
+#+BEGIN_SRC json
+{
+    "aggs": {
+        "hosts": {
+            "terms": {
+                "size": 1000,
+                "field": "_metadata.nodename",
+                "order": {
+                    "_term": "asc"
+                }
+            }
+        }
+    }
+}
+#+END_SRC
+
+The above (at the time of this writing) returned a total of 230 different
+node names.
+
+This shows us that a simple aggregation is fast, even though it is applied to
+the entire data set.
+
+
+** Filter Aggregation with Sub-Aggregations (< 4 min, < 10 sec)
+
+Next, we consider an aggregation that includes four sub-aggregations, one for
+hosts to prove to ourselves that the aggregation filter is doing its job, and
+the other three top level, non-nested, aggregations from the original
+bad-query above.  The initial query takes about 3 minutes to run, with a
+number of long Java GCs reported in the ES logs. But subsequent runs take just
+seconds:
+
+#+BEGIN_EXAMPLE
+curl -XPOST http://es-perf44.example.com/vos.sar/_search?search_type=count -d @mem-and-ldavg-aggs.json > response.json
+#+END_EXAMPLE
+
+#+BEGIN_SRC json
+{
+    "aggs": {
+        "by_host": {
+            "filter": { "term": { "nodename": "perf92.example.com" } },
+            "aggs": {
+                "hosts": {
+                    "terms": {
+                        "size": 1000,
+                        "field": "_metadata.nodename",
+                        "order": {
+                            "_term": "asc"
+                        }
+                    }
+                },
+                "loadavg_1_percentile": {
+                    "percentiles": {
+                        "field": "queue.ldavg-1"
+                    }
+                },
+                "ex_stats": {
+                    "extended_stats": {
+                        "field": "queue.ldavg-1"
+                    }
+                },
+                "mem_used_percentile": {
+                    "percentiles": {
+                        "field": "memory.memused-percent"
+                    }
+                }
+            }
+        }
+    }
+}
+#+END_SRC
+
+
+** Filter Aggregation with Nested CPU Aggregations (> 10 min)
+
+Next we add one of the nested aggregations for CPU information. This kills
+the search response time, at least for the first one (took longer than 10
+minutes), but we did not have to restart the ElasticSearch instance (don't run
+this unless you are able to log into perf34 and potentially restart the ES
+instance there):
+
+#+BEGIN_EXAMPLE
+curl -XPOST http://es-perf44.example.com/vos.sar/_search?search_type=count -d @bad-mem-ldavg-cpu-aggs.json > response.json
+#+END_EXAMPLE
+
+#+BEGIN_SRC json
+{
+    "aggs": {
+        "by_host": {
+            "filter" : { "term" : { "nodename" : "perf92.example.com" } },
+            "aggs": {
+                "cpu_percentile": {
+                    "nested": {
+                        "path": "cpu-load"
+                    },
+                    "aggs": {
+                        "percpu": {
+                            "terms": {
+                                "field": "cpu-load.cpu",
+                                "size": 100
+                            },
+                            "aggs": {
+                                "user": {
+                                    "percentiles": {
+                                        "field": "user"
+                                    }
+                                },
+                                "system": {
+                                    "percentiles": {
+                                        "field": "system"
+                                    }
+                                },
+                                "iowait": {
+                                    "percentiles": {
+                                        "field": "iowait"
+                                    }
+                                },
+                                "idle": {
+                                    "percentiles": {
+                                        "field": "idle"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "loadavg_1_percentile": {
+                    "percentiles": {
+                        "field": "queue.ldavg-1"
+                    }
+                },
+                "ex_stats": {
+                    "extended_stats": {
+                        "field": "queue.ldavg-1"
+                    }
+                },
+                "mem_used_percentile": {
+                    "percentiles": {
+                        "field": "memory.memused-percent"
+                    }
+                }
+            }
+        }
+    }
+}
+#+END_SRC
+
+
+** Nested CPU Aggregation with Collect Mode "Breadth-First" (> 10 min)
+
+Now an experiment with breadth-first term search (does not seem to help much,
+first query takes longer than 10 minutes, and subsequent queries take between
+2 and 3 minutes to run:
+
+#+BEGIN_EXAMPLE
+curl -XPOST http://es-perf44.example.com/vos.sar/_search?search_type=count -d @mem-ldavg-cpu-aggs.json > response.json
+#+END_EXAMPLE
+
+#+BEGIN_SRC json
+{
+    "aggs": {
+        "by_host": {
+            "filter" : { "term" : { "nodename" : "perf92.example.com" } },
+            "aggs": {
+                "cpu_percentile": {
+                    "nested": {
+                        "path": "cpu-load"
+                    },
+                    "aggs": {
+                        "percpu": {
+                            "terms": {
+                                "field": "cpu-load.cpu",
+                                "size": 100,
+                                "collect_mode" : "breadth_first"
+                            },
+                            "aggs": {
+                                "user": {
+                                    "percentiles": {
+                                        "field": "user"
+                                    }
+                                },
+                                "system": {
+                                    "percentiles": {
+                                        "field": "system"
+                                    }
+                                },
+                                "iowait": {
+                                    "percentiles": {
+                                        "field": "iowait"
+                                    }
+                                },
+                                "idle": {
+                                    "percentiles": {
+                                        "field": "idle"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "loadavg_1_percentile": {
+                    "percentiles": {
+                        "field": "queue.ldavg-1"
+                    }
+                },
+                "ex_stats": {
+                    "extended_stats": {
+                        "field": "queue.ldavg-1"
+                    }
+                },
+                "mem_used_percentile": {
+                    "percentiles": {
+                        "field": "memory.memused-percent"
+                    }
+                }
+            }
+        }
+    }
+}
+#+END_SRC
+
+
+** Nested CPU Aggregations Applied to 1-Day Index (< 15 secs)
+
+But, if we change the index to not use the alias, but just specify one day,
+the same aggregation query takes 12 seconds. And if we expand to include 9
+indexes, using a wildcard pattern like:
+
+#+BEGIN_EXAMPLE
+curl -XPOST http://es-perf44.example.com/vos.sar-2014070*/_search?search_type=count -d @mem-ldavg-cpu-aggs.json > response.json
+#+END_EXAMPLE
+
+It still only takes about 14 seconds.
+
+
+* Other Example Queries
+
+** Counts of Nested Documents by CPU, Disk, and Nic IDs
+
+#+BEGIN_EXAMPLE
+curl -XPOST http://es-perf44.example.com/vos.sar-20141010/_search?search_type=count -d @nested-doc-count-agg.json > response.json
+#+END_EXAMPLE
+
+#+BEGIN_SRC json
+{
+    "aggs": {
+        "by_host": {
+            "filter": {
+                "term": {
+                    "nodename": "perf92.example.com"
+                }
+            },
+            "aggs": {
+                "cpu-load-cpus": {
+                    "nested": {
+                        "path": "cpu-load"
+                    },
+                    "aggs": {
+                        "percpu": {
+                            "terms": {
+                                "field": "cpu-load.cpu",
+                                "size": 512
+                            }
+                        }
+                    }
+                },
+                "cpu-load-all-cpus": {
+                    "nested": {
+                        "path": "cpu-load-all"
+                    },
+                    "aggs": {
+                        "percpu": {
+                            "terms": {
+                                "field": "cpu-load-all.cpu",
+                                "size": 512
+                            }
+                        }
+                    }
+                },
+                "disk-block-devs": {
+                    "nested": {
+                        "path": "disk"
+                    },
+                    "aggs": {
+                        "perdisk": {
+                            "terms": {
+                                "field": "disk.disk-device",
+                                "size": 2048
+                            }
+                        }
+                    }
+                },
+                "filesystem-names": {
+                    "nested": {
+                        "path": "filesystems"
+                    },
+                    "aggs": {
+                        "perfs": {
+                            "terms": {
+                                "field": "filesystems.filesystem",
+                                "size": 2048
+                            }
+                        }
+                    }
+                },
+                "network-nics": {
+                    "nested": {
+                        "path": "network.net-dev"
+                    },
+                    "aggs": {
+                        "pernic": {
+                            "terms": {
+                                "field": "network.net-dev.iface",
+                                "size": 2048
+                            }
+                        }
+                    }
+                },
+                "cpu-freqs": {
+                    "nested": {
+                        "path": "power-management.cpu-frequency"
+                    },
+                    "aggs": {
+                        "percpufreq": {
+                            "terms": {
+                                "field": "power-management.cpu-frequency.number",
+                                "size": 2048
+                            }
+                        }
+                    }
+                },
+                "fan-speeds": {
+                    "nested": {
+                        "path": "power-management.fan-speed"
+                    },
+                    "aggs": {
+                        "perfan": {
+                            "terms": {
+                                "field": "power-management.fan-speed.number",
+                                "size": 2048
+                            }
+                        }
+                    }
+                },
+                "temps": {
+                    "nested": {
+                        "path": "power-management.temperature"
+                    },
+                    "aggs": {
+                        "pertemp": {
+                            "terms": {
+                                "field": "power-management.temperature.number",
+                                "size": 2048
+                            }
+                        }
+                    }
+                },
+                "usb-devices": {
+                    "nested": {
+                        "path": "power-management.usb-devices"
+                    },
+                    "aggs": {
+                        "perusbdev": {
+                            "terms": {
+                                "field": "power-management.usb-devices.bus_number",
+                                "size": 2048
+                            }
+                        }
+                    }
+                },
+                "serial-lines": {
+                    "nested": {
+                        "path": "serial"
+                    },
+                    "aggs": {
+                        "perline": {
+                            "terms": {
+                                "field": "serial.line",
+                                "size": 2048
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+#+END_SRC
+
+
+** Example Query for Records over 1 Week, Returning 1st 10 (Sorted)
+
+#+BEGIN_EXAMPLE
+curl -XPOST http://es-perf44.example.com/vos.sar-20140601,vos.sar-20140602,vos.sar-20140603,vos.sar-20140604,vos.sar-20140605,vos.sar-20140606,vos.sar-20140607/sar/_search -d @query-only-1week.json > response.json
+#+END_EXAMPLE
+
+#+BEGIN_SRC json
+{
+    "size": 10,
+    "fields": [
+        "_timestamp",
+        "timestamp.date",
+        "timestamp.time",
+        "_metadata.nodename",
+        "queue.ldavg-1",
+        "queue.ldavg-5",
+        "queue.ldavg-15",
+        "memory.memfree",
+        "memory.memused",
+        "memory.memused-percent",
+        "memory.cached",
+        "cpu-load.cpu",
+        "cpu-load.user",
+        "cpu-load.system",
+        "cpu-load.iowait",
+        "cpu-load.idle",
+        "disk.disk-device",
+        "disk.await",
+        "disk.rd_sec",
+        "disk.wr_sec",
+        "disk.avgrq-sz",
+        "disk.avgqu-sz",
+        "network.net-dev.iface",
+        "network.net-dev.rxkB",
+        "network.net-dev.txkB"
+    ],
+    "query": {
+        "filtered": {
+            "filter": {
+                "and": {
+                    "filters": [
+                        {
+                            "range": {
+                                "_timestamp": {
+                                    "gt": "2014-06-01T00:00:00",
+                                    "lt": "2014-06-08T00:00:00"
+                                },
+                                "execution": "fielddata",
+                                "_cache": "false"
+                            }
+                        },
+                        {
+                            "term": {
+                                "_metadata.nodename": "perf92.example.com",
+                                "_cache": "false"
+                            }
+                        }
+                    ],
+                    "_cache": "false"
+                }
+            }
+        }
+    },
+    "sort": [
+        {
+            "_timestamp": {
+                "order": "asc"
+            }
+        }
+    ]
+}
+#+END_SRC

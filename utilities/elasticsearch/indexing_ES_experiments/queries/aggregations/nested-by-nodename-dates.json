@@ -1,0 +1,18 @@
+{
+  "size": 0,
+  "aggs": {
+    "by_host": {
+      "filter": { "term": { "nodename": "perf92.example.com" } },
+      "aggs": {
+        "name": {
+          "terms": {
+            "field": "_metadata.nodename",
+            "size": 8192
+          }
+        },
+        "min_date": {"min": {"field": "_timestamp"}},
+        "max_date": {"max": {"field": "_timestamp"}}
+      }
+    }
+  }
+}

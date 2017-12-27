@@ -1,0 +1,13 @@
+{
+    "aggs": {
+        "hosts": {
+            "terms": {
+                "size": 1000,
+                "field": "_metadata.nodename",
+                "order": {
+                    "_term": "asc"
+                }
+            }
+        }
+    }
+}

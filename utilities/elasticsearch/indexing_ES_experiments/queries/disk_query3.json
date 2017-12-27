@@ -1,0 +1,29 @@
+{
+  "fields": [
+    "disk.avgrq-sz",
+    "disk.disk-device"
+  ],
+  "query": {
+    "nested": {
+      "path": "disk",
+      "score_mode": "avg",
+      "inner_hits": {},
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "match": {
+                "disk.disk-device": "dev8-0"
+              }
+            },
+            {
+              "term": {
+                "disk.avgrq-sz": 8.52
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

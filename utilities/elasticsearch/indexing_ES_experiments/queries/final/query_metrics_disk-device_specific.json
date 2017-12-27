@@ -1,0 +1,86 @@
+{
+  "size": 1,
+  "fields": [],
+  "query": {
+    "filtered": {
+      "query": {
+        "query_string": {
+          "analyze_wildcard": true,
+          "query": "_metadata.nodename:benchserver2"
+        }
+      },
+      "filter": {
+        "nested": {
+          "path": "disk",
+          "inner_hits": {
+            "fields": [
+              "wr_sec",
+              "disk-device"
+            ]
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "range": {
+                    "_timestamp": {
+                      "gte": "1434982828753",
+                      "lte": "1434984042120"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "query": {
+            "bool": {
+              "must": [
+                {
+                  "match": {
+                    "disk.disk-device": "dev8-0"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "aggs": {
+    "3": {
+      "date_histogram": {
+        "interval": "60s",
+        "field": "_timestamp",
+        "min_doc_count": 0,
+        "extended_bounds": {
+          "min": "1434982828753",
+          "max": "1434984042120"
+        }
+      },
+      "aggs": {
+        "2": {
+          "nested": {
+            "path": "disk"
+          },
+          "aggs": {
+            "1": {
+            "filter":{
+              "term": {
+                  "disk.disk-device": "dev8-0"
+                }
+              },
+              "aggs": {
+                "root": {
+                  "avg": {
+                    "field": "disk.wr_sec"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

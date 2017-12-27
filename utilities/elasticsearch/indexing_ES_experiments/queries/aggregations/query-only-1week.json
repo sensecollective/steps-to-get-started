@@ -1,0 +1,64 @@
+{
+    "size": 10,
+    "fields": [
+        "_timestamp",
+        "timestamp.date",
+        "timestamp.time",
+        "_metadata.nodename",
+        "queue.ldavg-1",
+        "queue.ldavg-5",
+        "queue.ldavg-15",
+        "memory.memfree",
+        "memory.memused",
+        "memory.memused-percent",
+        "memory.cached",
+        "cpu-load.cpu",
+        "cpu-load.user",
+        "cpu-load.system",
+        "cpu-load.iowait",
+        "cpu-load.idle",
+        "disk.disk-device",
+        "disk.await",
+        "disk.rd_sec",
+        "disk.wr_sec",
+        "disk.avgrq-sz",
+        "disk.avgqu-sz",
+        "network.net-dev.iface",
+        "network.net-dev.rxkB",
+        "network.net-dev.txkB"
+    ],
+    "query": {
+        "filtered": {
+            "filter": {
+                "and": {
+                    "filters": [
+                        {
+                            "range": {
+                                "_timestamp": {
+                                    "gt": "2014-06-01T00:00:00",
+                                    "lt": "2014-06-08T00:00:00"
+                                },
+                                "execution": "fielddata",
+                                "_cache": "false"
+                            }
+                        },
+                        {
+                            "term": {
+                                "_metadata.nodename": "perf92.example.com",
+                                "_cache": "false"
+                            }
+                        }
+                    ],
+                    "_cache": "false"
+                }
+            }
+        }
+    },
+    "sort": [
+        {
+            "_timestamp": {
+                "order": "asc"
+            }
+        }
+    ]
+}

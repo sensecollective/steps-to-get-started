@@ -1,0 +1,49 @@
+{
+  "size": 0,
+  "query": {
+    "filtered": {
+      "query": {
+        "query_string": {
+          "analyze_wildcard": true,
+          "query": "*"
+        }
+      },
+      "filter": {
+        "bool": {
+          "must": [
+            {
+              "range": {
+                "_timestamp": {
+                  "gte": "1435993391793",
+                  "lte": "1436069137161",
+                  "format": "epoch_millis"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "aggs": {
+    "2": {
+      "date_histogram": {
+        "interval": "1m",
+        "field": "_timestamp",
+        "min_doc_count": 0,
+        "extended_bounds": {
+          "min": "1435993391793",
+          "max": "1436069137161"
+        },
+        "format": "epoch_millis"
+      },
+      "aggs": {
+        "1": {
+          "avg": {
+            "field": "io.io-writes.bwrtn"
+          }
+        }
+      }
+    }
+  }
+}

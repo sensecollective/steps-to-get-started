@@ -1,0 +1,1941 @@
+{
+    "took": 1,
+    "timed_out": false,
+    "_shards": {
+        "total": 10,
+        "successful": 10,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": 77,
+        "max_score": 0.0,
+        "hits": [
+
+        ]
+    },
+    "aggregations": {
+        "7": {
+            "buckets": [
+                {
+                    "key_as_string": "1512673800000",
+                    "key": 1512673800000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512674400000",
+                    "key": 1512674400000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512675000000",
+                    "key": 1512675000000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512675600000",
+                    "key": 1512675600000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512676200000",
+                    "key": 1512676200000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512676800000",
+                    "key": 1512676800000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512677400000",
+                    "key": 1512677400000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512678000000",
+                    "key": 1512678000000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512678600000",
+                    "key": 1512678600000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512679200000",
+                    "key": 1512679200000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512679800000",
+                    "key": 1512679800000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512680400000",
+                    "key": 1512680400000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512681000000",
+                    "key": 1512681000000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512681600000",
+                    "key": 1512681600000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512682200000",
+                    "key": 1512682200000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512682800000",
+                    "key": 1512682800000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512683400000",
+                    "key": 1512683400000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512684000000",
+                    "key": 1512684000000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512684600000",
+                    "key": 1512684600000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512685200000",
+                    "key": 1512685200000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512685800000",
+                    "key": 1512685800000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512686400000",
+                    "key": 1512686400000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512687000000",
+                    "key": 1512687000000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512687600000",
+                    "key": 1512687600000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512688200000",
+                    "key": 1512688200000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512688800000",
+                    "key": 1512688800000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512689400000",
+                    "key": 1512689400000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512690000000",
+                    "key": 1512690000000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512690600000",
+                    "key": 1512690600000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512691200000",
+                    "key": 1512691200000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512691800000",
+                    "key": 1512691800000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512692400000",
+                    "key": 1512692400000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512693000000",
+                    "key": 1512693000000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512693600000",
+                    "key": 1512693600000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512694200000",
+                    "key": 1512694200000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512694800000",
+                    "key": 1512694800000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512695400000",
+                    "key": 1512695400000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512696000000",
+                    "key": 1512696000000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512696600000",
+                    "key": 1512696600000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512697200000",
+                    "key": 1512697200000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512697800000",
+                    "key": 1512697800000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512698400000",
+                    "key": 1512698400000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512699000000",
+                    "key": 1512699000000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512699600000",
+                    "key": 1512699600000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512700200000",
+                    "key": 1512700200000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512700800000",
+                    "key": 1512700800000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512701400000",
+                    "key": 1512701400000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512702000000",
+                    "key": 1512702000000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512702600000",
+                    "key": 1512702600000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512703200000",
+                    "key": 1512703200000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512703800000",
+                    "key": 1512703800000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512704400000",
+                    "key": 1512704400000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512705000000",
+                    "key": 1512705000000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512705600000",
+                    "key": 1512705600000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512706200000",
+                    "key": 1512706200000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512706800000",
+                    "key": 1512706800000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512707400000",
+                    "key": 1512707400000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512708000000",
+                    "key": 1512708000000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512708600000",
+                    "key": 1512708600000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512709200000",
+                    "key": 1512709200000,
+                    "doc_count": 0,
+                    "6": {
+                        "doc_count": 0,
+                        "nested_aggs": {
+                            "doc_count": 0,
+                            "1": {
+                                "value": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512709800000",
+                    "key": 1512709800000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 25.1200008392334
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512710400000",
+                    "key": 1512710400000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.790000915527344
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512711000000",
+                    "key": 1512711000000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.860000610351562
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512711600000",
+                    "key": 1512711600000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 23.020000457763672
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512712200000",
+                    "key": 1512712200000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.989999771118164
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512712800000",
+                    "key": 1512712800000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 23.1299991607666
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512713400000",
+                    "key": 1512713400000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 26.149999618530273
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512714000000",
+                    "key": 1512714000000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.719999313354492
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512714600000",
+                    "key": 1512714600000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.579999923706055
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512715200000",
+                    "key": 1512715200000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.530000686645508
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512715800000",
+                    "key": 1512715800000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.989999771118164
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512716400000",
+                    "key": 1512716400000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 23.239999771118164
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512717000000",
+                    "key": 1512717000000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 25.3700008392334
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512717600000",
+                    "key": 1512717600000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.899999618530273
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512718200000",
+                    "key": 1512718200000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.579999923706055
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512718800000",
+                    "key": 1512718800000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.530000686645508
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512719400000",
+                    "key": 1512719400000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.280000686645508
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512720000000",
+                    "key": 1512720000000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.200000762939453
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512720600000",
+                    "key": 1512720600000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 25.709999084472656
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512721200000",
+                    "key": 1512721200000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.719999313354492
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512721800000",
+                    "key": 1512721800000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.700000762939453
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512722400000",
+                    "key": 1512722400000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.989999771118164
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512723000000",
+                    "key": 1512723000000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.75
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512723600000",
+                    "key": 1512723600000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.639999389648438
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512724200000",
+                    "key": 1512724200000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 25.459999084472656
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512724800000",
+                    "key": 1512724800000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 23.170000076293945
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512725400000",
+                    "key": 1512725400000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 23.030000686645508
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512726000000",
+                    "key": 1512726000000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.739999771118164
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512726600000",
+                    "key": 1512726600000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.65999984741211
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512727200000",
+                    "key": 1512727200000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.950000762939453
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512727800000",
+                    "key": 1512727800000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 25.239999771118164
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512728400000",
+                    "key": 1512728400000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.850000381469727
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512729000000",
+                    "key": 1512729000000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.260000228881836
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512729600000",
+                    "key": 1512729600000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.030000686645508
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512730200000",
+                    "key": 1512730200000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 23.0
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512730800000",
+                    "key": 1512730800000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.889999389648438
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512731400000",
+                    "key": 1512731400000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 25.899999618530273
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512732000000",
+                    "key": 1512732000000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.440000534057617
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512732600000",
+                    "key": 1512732600000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.56999969482422
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512733200000",
+                    "key": 1512733200000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 23.040000915527344
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512733800000",
+                    "key": 1512733800000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.209999084472656
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512734400000",
+                    "key": 1512734400000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.860000610351562
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512735000000",
+                    "key": 1512735000000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 24.469999313354492
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512735600000",
+                    "key": 1512735600000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.3799991607666
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512736200000",
+                    "key": 1512736200000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.299999237060547
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512736800000",
+                    "key": 1512736800000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.600000381469727
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512737400000",
+                    "key": 1512737400000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.850000381469727
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512738000000",
+                    "key": 1512738000000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.110000610351562
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512738600000",
+                    "key": 1512738600000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 25.56999969482422
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512739200000",
+                    "key": 1512739200000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.399999618530273
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512739800000",
+                    "key": 1512739800000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.600000381469727
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512740400000",
+                    "key": 1512740400000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 23.59000015258789
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512741000000",
+                    "key": 1512741000000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.600000381469727
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512741600000",
+                    "key": 1512741600000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.559999465942383
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512742200000",
+                    "key": 1512742200000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 25.559999465942383
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512742800000",
+                    "key": 1512742800000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 23.010000228881836
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512743400000",
+                    "key": 1512743400000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 24.309999465942383
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512744000000",
+                    "key": 1512744000000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.84000015258789
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512744600000",
+                    "key": 1512744600000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.1299991607666
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512745200000",
+                    "key": 1512745200000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.8799991607666
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512745800000",
+                    "key": 1512745800000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 25.670000076293945
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512746400000",
+                    "key": 1512746400000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 24.940000534057617
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512747000000",
+                    "key": 1512747000000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 23.6299991607666
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512747600000",
+                    "key": 1512747600000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 23.469999313354492
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512748200000",
+                    "key": 1512748200000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 25.579999923706055
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512748800000",
+                    "key": 1512748800000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 23.110000610351562
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512749400000",
+                    "key": 1512749400000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 35.08000183105469
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512750000000",
+                    "key": 1512750000000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 25.25
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512750600000",
+                    "key": 1512750600000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 20.40999984741211
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512751200000",
+                    "key": 1512751200000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 20.770000457763672
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512751800000",
+                    "key": 1512751800000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 19.520000457763672
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512752400000",
+                    "key": 1512752400000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 21.719999313354492
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512753000000",
+                    "key": 1512753000000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 24.920000076293945
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512753600000",
+                    "key": 1512753600000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 21.459999084472656
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512754200000",
+                    "key": 1512754200000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 20.850000381469727
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512754800000",
+                    "key": 1512754800000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 21.700000762939453
+                            }
+                        }
+                    }
+                },
+                {
+                    "key_as_string": "1512755400000",
+                    "key": 1512755400000,
+                    "doc_count": 1,
+                    "6": {
+                        "doc_count": 2,
+                        "nested_aggs": {
+                            "doc_count": 1,
+                            "1": {
+                                "value": 22.010000228881836
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

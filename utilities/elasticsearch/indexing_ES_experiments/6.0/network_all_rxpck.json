@@ -1,0 +1,59 @@
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "range": {
+            "recorded_on": {
+              "gte": "1512674367000",
+              "lte": "1512755421000",
+              "format": "epoch_millis"
+            }
+          }
+        },
+        {
+          "query_string": {
+            "analyze_wildcard": true,
+            "query": "_metadata.nodename:dhcp47-211"
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "7": {
+      "date_histogram": {
+        "interval": "10m",
+        "field": "recorded_on",
+        "min_doc_count": 0,
+        "extended_bounds": {
+          "min": "1512674367000",
+          "max": "1512755421000"
+        },
+        "format": "epoch_millis"
+      },
+      "aggs": {
+        "6": {
+          "nested": {
+            "path": "network.net-dev"
+          },
+          "aggs": {
+            "nested_aggs": {
+              "terms": {
+                "field": "network.net-dev.iface"
+              },
+              "aggs": {
+                "1": {
+                  "max": {
+                    "field": "network.net-dev.rxpck"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

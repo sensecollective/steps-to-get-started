@@ -1,0 +1,28 @@
+{
+  "fields": [
+    "disk"
+  ],
+  "query": {
+    "nested": {
+      "path": "disk",
+      "score_mode": "avg",
+      "inner_hits": {},
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "match": {
+                "disk.disk-device": "dev252-0"
+              }
+            },
+            {
+              "term": {
+                "disk.avgrq-sz": 8.52
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

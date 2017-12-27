@@ -1,0 +1,47 @@
+{
+  "size": 0,
+  "query": {
+    "filtered": {
+      "query": {
+        "query_string": {
+          "analyze_wildcard": true,
+          "query": "$lucene_query"
+        }
+      },
+      "filter": {
+        "bool": {
+          "must": [
+            {
+              "range": {
+                "_timestamp": {
+                  "gte": "$timeFrom",
+                  "lte": "$timeTo"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "aggs": {
+    "2": {
+      "date_histogram": {
+        "interval": "$interval",
+        "field": "_timestamp",
+        "min_doc_count": 1,
+        "extended_bounds": {
+          "min": "$timeFrom",
+          "max": "$timeTo"
+        }
+      },
+      "aggs": {
+        "1": {
+          "avg": {
+            "field": "memory.swpused-percent"
+          }
+        }
+      }
+    }
+  }
+}

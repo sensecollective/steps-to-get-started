@@ -1,0 +1,72 @@
+{
+    "aggs": {
+        "by_host": {
+            "filter" : {
+                "and": [
+                    { "term" : { "nodename" : "perf92.example.com" } },
+                    {
+                        "range": {
+                            "_timestamp": {
+                                "lt": "2014-08-01T00:00:00",
+                                "gt": "2014-07-31T00:00:00"
+                            }
+                        }
+                    }
+                ]
+            },
+            "aggs": {
+                "cpu_percentile": {
+                    "nested": {
+                        "path": "cpu-load"
+                    },
+                    "aggs": {
+                        "percpu": {
+                            "terms": {
+                                "field": "cpu-load.cpu",
+                                "size": 100,
+                                "collect_mode" : "breadth_first"
+                            },
+                            "aggs": {
+                                "user": {
+                                    "percentiles": {
+                                        "field": "user"
+                                    }
+                                },
+                                "system": {
+                                    "percentiles": {
+                                        "field": "system"
+                                    }
+                                },
+                                "iowait": {
+                                    "percentiles": {
+                                        "field": "iowait"
+                                    }
+                                },
+                                "idle": {
+                                    "percentiles": {
+                                        "field": "idle"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "loadavg_1_percentile": {
+                    "percentiles": {
+                        "field": "queue.ldavg-1"
+                    }
+                },
+                "ex_stats": {
+                    "extended_stats": {
+                        "field": "queue.ldavg-1"
+                    }
+                },
+                "mem_used_percentile": {
+                    "percentiles": {
+                        "field": "memory.memused-percent"
+                    }
+                }
+            }
+        }
+    }
+}

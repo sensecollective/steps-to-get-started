@@ -1,0 +1,19 @@
+{
+    "size": 0,
+    "aggs": {
+        "by_md5": {
+            "terms": {
+                "field": "_metadata.md5",
+                "size": 8192
+            },
+            "aggs": {
+                "dates": {
+                    "terms": {
+                        "field": "_timestamp",
+                        "size": 4
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+DIR=$(dirname $0)
+if [ ! -e $DIR/aggregations.html ]; then
+    echo "Generate a version aggregations.html from aggregations.org via Emacs Org mode"
+    exit 1
+fi
+scp /aggregations.html vos@perf44.example.com:/srv/vos/VoS/public_html/

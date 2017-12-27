@@ -1,0 +1,41 @@
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "_metadata.nodename": "localhost.localdomain"
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "disk_percentile": {
+      "nested": {
+        "path": "disk"
+      },
+      "aggs": {
+        "perdisk": {
+          "terms": {
+            "field": "disk.disk-device",
+            "size": 1
+          },
+          "aggs": {
+            "avgrq_size": {
+              "percentiles": {
+                "field": "avgrq-sz"
+              }
+            },
+            "avgqu_size": {
+              "percentiles": {
+                "field": "avgqu-sz"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

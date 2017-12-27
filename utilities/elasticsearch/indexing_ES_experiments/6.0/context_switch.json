@@ -1,0 +1,50 @@
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "range": {
+            "recorded_on": {
+              "gte": "1512709368641",
+              "lte": "1512755421000",
+              "format": "epoch_millis"
+            }
+          }
+        },
+        {
+          "query_string": {
+            "analyze_wildcard": true,
+            "query": "_metadata.nodename:dhcp47-211"
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "2": {
+      "date_histogram": {
+        "interval": "20s",
+        "field": "recorded_on",
+        "min_doc_count": 0,
+        "extended_bounds": {
+          "min": "1512709368641",
+          "max": "1512755421000"
+        },
+        "format": "epoch_millis"
+      },
+      "aggs": {
+        "1": {
+          "avg": {
+            "field": "process-and-context-switch.cswch"
+          }
+        },
+        "3": {
+          "avg": {
+            "field": "process-and-context-switch.proc"
+          }
+        }
+      }
+    }
+  }
+}

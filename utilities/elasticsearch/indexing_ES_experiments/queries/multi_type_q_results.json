@@ -1,0 +1,30 @@
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 4,
+    "successful" : 4,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 144,
+    "max_score" : 3.925263,
+    "hits" : [ {
+      "_index" : "pbench.2016-02",
+      "_type" : "pbench-run",
+      "_id" : "2e2e8933451409eeda920ab6c35f7cde",
+      "_score" : 3.925263,
+      "fields" : {
+        "_metadata.file-name" : [ "/tmp/fio_analyzer_iodepth:32_type:native_io:aio_run:2-IOPS:write-debugger:perf_kvm_record__2016-02-05_09:37:22.tar.xz" ]
+      }
+    }, {
+      "_index" : "pbench.sar-2015-10-11",
+      "_type" : "sar",
+      "_id" : "cd703c87c70ea9fe623ce748b4af1ca1",
+      "_score" : 2.7668054,
+      "fields" : {
+        "_metadata.nodename" : [ "perf14" ]
+      }
+    } ]
+  }
+}

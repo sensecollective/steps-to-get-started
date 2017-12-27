@@ -1,0 +1,33 @@
+{
+    "aggs": {
+        "by_host": {
+            "filter": { "term": { "nodename": "perf92.example.com" } },
+            "aggs": {
+                "hosts": {
+                    "terms": {
+                        "size": 1000,
+                        "field": "_metadata.nodename",
+                        "order": {
+                            "_term": "asc"
+                        }
+                    }
+                },
+                "loadavg_1_percentile": {
+                    "percentiles": {
+                        "field": "queue.ldavg-1"
+                    }
+                },
+                "ex_stats": {
+                    "extended_stats": {
+                        "field": "queue.ldavg-1"
+                    }
+                },
+                "mem_used_percentile": {
+                    "percentiles": {
+                        "field": "memory.memused-percent"
+                    }
+                }
+            }
+        }
+    }
+}

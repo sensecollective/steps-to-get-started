@@ -1,0 +1,168 @@
+{
+    "size": 1000,
+    "fields": [
+        "_timestamp",
+        "timestamp.date",
+        "timestamp.time",
+        "queue.ldavg-1",
+        "queue.ldavg-5",
+        "queue.ldavg-15",
+        "memory.memfree",
+        "memory.memused",
+        "memory.memused-percent",
+        "memory.cached",
+        "cpu-load.cpu",
+        "cpu-load.user",
+        "cpu-load.system",
+        "cpu-load.iowait",
+        "cpu-load.idle",
+        "disk.disk-device",
+        "disk.await",
+        "disk.rd_sec",
+        "disk.wr_sec",
+        "disk.avgrq-sz",
+        "disk.avgqu-sz",
+        "network.net-dev.iface",
+        "network.net-dev.rxkB",
+        "network.net-dev.txkB"
+    ],
+    "query": {
+        "filtered": {
+            "filter": {
+                "and": [
+                    {
+                        "term": {
+                            "_metadata.nodename": "perf92.example.com"
+                        }
+                    },
+                    {
+                        "range": {
+                            "_timestamp": {
+                                "lt": "2014-08-01T00:00:00",
+                                "gt": "2014-07-31T00:00:00"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "aggs": {
+        "loadavg_1_percentile": {
+            "percentiles": {
+                "field": "queue.ldavg-1"
+            }
+        },
+        "ex_stats": {
+            "extended_stats": {
+                "field": "queue.ldavg-1"
+            }
+        },
+        "mem_used_percentile": {
+            "percentiles": {
+                "field": "memory.memused-percent"
+            }
+        },
+        "cpu_percentile": {
+            "nested": {
+                "path": "cpu-load"
+            },
+            "aggs": {
+                "percpu": {
+                    "terms": {
+                        "field": "cpu-load.cpu",
+                        "size": 513
+                    },
+                    "aggs": {
+                        "user": {
+                            "percentiles": {
+                                "field": "user"
+                            }
+                        },
+                        "system": {
+                            "percentiles": {
+                                "field": "system"
+                            }
+                        },
+                        "iowait": {
+                            "percentiles": {
+                                "field": "iowait"
+                            }
+                        },
+                        "idle": {
+                            "percentiles": {
+                                "field": "idle"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "disk_percentile": {
+            "nested": {
+                "path": "disk"
+            },
+            "aggs": {
+                "perdisk": {
+                    "terms": {
+                        "field": "disk.disk-device",
+                        "size": 2048
+                    },
+                    "aggs": {
+                        "await": {
+                            "percentiles": {
+                                "field": "await"
+
+                            }
+                        },
+                        "rd_sec": {
+                            "percentiles": {
+                                "field": "rd_sec"
+                            }
+                        },
+                        "wr_sec": {
+                            "percentiles": {
+                                "field": "wr_sec"
+                            }
+                        },
+                        "avgrq_size": {
+                            "percentiles": {
+                                "field": "avgrq-sz"
+                            }
+                        },
+                        "avgqu_size": {
+                            "percentiles": {
+                                "field": "avgqu-sz"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "network_percentile": {
+            "nested": {
+                "path": "network.net-dev"
+            },
+            "aggs": {
+                "pernic": {
+                    "terms": {
+                        "field": "network.net-dev.iface",
+                        "size": 2048
+                    },
+                    "aggs": {
+                        "receive": {
+                            "percentiles": {
+                                "field": "rxkB"
+                            }
+                        },
+                        "send": {
+                            "percentiles": {
+                                "field": "txkB"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

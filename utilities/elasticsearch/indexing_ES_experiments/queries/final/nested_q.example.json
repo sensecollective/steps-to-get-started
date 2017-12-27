@@ -1,0 +1,85 @@
+{
+  "query": {
+    "filtered": {
+      "query": {
+        "query_string": {
+          "analyze_wildcard": true,
+          "query": "$lucene_query"
+        }
+      },
+      "filter": {
+        "nested": {
+          "path": "disk",
+          "inner_hits": {
+            "fields": [
+              "wr_sec",
+              "disk-device"
+            ]
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "range": {
+                    "_timestamp": {
+                      "gte": "$timeFrom",
+                      "lte": "$timeTo"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "query": {
+            "bool": {
+              "must": [
+                {
+                  "match": {
+                    "disk.disk-device": "dev8-0"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "size": 0,
+  "aggs": {
+    "2": {
+      "date_histogram": {
+        "interval": "$interval",
+        "field": "_timestamp",
+        "min_doc_count": 0,
+        "extended_bounds": {
+          "min": "$timeFrom",
+          "max": "$timeTo"
+        }
+      },
+      "aggs": {
+        "1": {
+          "nested": {
+            "path": "disk"
+          },
+          "aggs": {
+            "nested_aggs": {
+              "filter":{
+                "term": {
+                  "disk.disk-device": "dev8-0"
+                }
+              },
+              "aggs": {
+                "4": {
+                  "avg": {
+                    "field": "disk.wr_sec"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "size": 0,
+  "aggs": {
+    "by_nodename": {
+      "terms": {
+        "field": "_metadata.nodename",
+        "size": 8192
+      },
+      "aggs": {
+        "dates": {
+          "terms": {
+            "field": "_timestamp",
+            "size": 8192
+          }
+        }
+      }
+    }
+  }
+}

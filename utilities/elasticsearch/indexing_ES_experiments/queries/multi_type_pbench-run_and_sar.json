@@ -1,0 +1,19 @@
+{
+  "query": {
+    "multi_match": {
+      "query": "2e2e8933451409eeda920ab6c35f7cde",
+      "fields": [
+        "_metadata.md5",
+        "_metadata.pbench_run_md5"
+      ]
+    }
+  },
+  "from": 0,
+  "size": 2,
+  "fields": [
+    "_metadata.file-name",
+    "_metadata.nodename"
+  ],
+  "sort": [],
+  "aggs": {}
+}

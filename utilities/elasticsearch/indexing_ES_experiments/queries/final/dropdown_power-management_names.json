@@ -1,0 +1,29 @@
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "_metadata.nodename": "benchserver2"
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "pms_agg": {
+      "nested": {
+        "path": "power-management.fan-speed"
+      },
+      "aggs": {
+        "pm_device_names": {
+          "terms": {
+            "field": "power-management.fan-speed.device",
+            "size": 0
+          }
+        }
+      }
+    }
+  }
+}

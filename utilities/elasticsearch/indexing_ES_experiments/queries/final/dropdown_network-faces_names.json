@@ -1,0 +1,29 @@
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "_metadata.nodename": "benchserver2"
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "ifaces": {
+      "nested": {
+        "path": "network.net-edev"
+      },
+      "aggs": {
+        "iface_names": {
+          "terms": {
+            "field": "network.net-edev.iface",
+            "size": 0
+          }
+        }
+      }
+    }
+  }
+}

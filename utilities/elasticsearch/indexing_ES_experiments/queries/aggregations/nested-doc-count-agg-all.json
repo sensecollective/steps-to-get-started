@@ -1,0 +1,142 @@
+{
+    "aggs": {
+        "by_host": {
+            "terms": {
+                "field": "_metadata.nodename",
+                "size": 1024
+            },
+            "aggs": {
+                "cpu-load-cpus": {
+                    "nested": {
+                        "path": "cpu-load"
+                    },
+                    "aggs": {
+                        "percpu": {
+                            "terms": {
+                                "field": "cpu-load.cpu",
+                                "size": 512
+                            }
+                        }
+                    }
+                },
+                "cpu-load-all-cpus": {
+                    "nested": {
+                        "path": "cpu-load-all"
+                    },
+                    "aggs": {
+                        "percpu": {
+                            "terms": {
+                                "field": "cpu-load-all.cpu",
+                                "size": 512
+                            }
+                        }
+                    }
+                },
+                "disk-block-devs": {
+                    "nested": {
+                        "path": "disk"
+                    },
+                    "aggs": {
+                        "perdisk": {
+                            "terms": {
+                                "field": "disk.disk-device",
+                                "size": 2048
+                            }
+                        }
+                    }
+                },
+                "filesystem-names": {
+                    "nested": {
+                        "path": "filesystems"
+                    },
+                    "aggs": {
+                        "perfs": {
+                            "terms": {
+                                "field": "filesystems.filesystem",
+                                "size": 2048
+                            }
+                        }
+                    }
+                },
+                "network-nics": {
+                    "nested": {
+                        "path": "network.net-dev"
+                    },
+                    "aggs": {
+                        "pernic": {
+                            "terms": {
+                                "field": "network.net-dev.iface",
+                                "size": 2048
+                            }
+                        }
+                    }
+                },
+                "cpu-freqs": {
+                    "nested": {
+                        "path": "power-management.cpu-frequency"
+                    },
+                    "aggs": {
+                        "percpufreq": {
+                            "terms": {
+                                "field": "power-management.cpu-frequency.number",
+                                "size": 2048
+                            }
+                        }
+                    }
+                },
+                "fan-speeds": {
+                    "nested": {
+                        "path": "power-management.fan-speed"
+                    },
+                    "aggs": {
+                        "perfan": {
+                            "terms": {
+                                "field": "power-management.fan-speed.number",
+                                "size": 2048
+                            }
+                        }
+                    }
+                },
+                "temps": {
+                    "nested": {
+                        "path": "power-management.temperature"
+                    },
+                    "aggs": {
+                        "pertemp": {
+                            "terms": {
+                                "field": "power-management.temperature.number",
+                                "size": 2048
+                            }
+                        }
+                    }
+                },
+                "usb-devices": {
+                    "nested": {
+                        "path": "power-management.usb-devices"
+                    },
+                    "aggs": {
+                        "perusbdev": {
+                            "terms": {
+                                "field": "power-management.usb-devices.bus_number",
+                                "size": 2048
+                            }
+                        }
+                    }
+                },
+                "serial-lines": {
+                    "nested": {
+                        "path": "serial"
+                    },
+                    "aggs": {
+                        "perline": {
+                            "terms": {
+                                "field": "serial.line",
+                                "size": 2048
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

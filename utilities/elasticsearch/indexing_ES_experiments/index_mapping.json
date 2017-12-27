@@ -1,0 +1,1130 @@
+{
+   "sarjitsu.sar-20150622" : {
+      "mappings" : {
+         "sar" : {
+            "_timestamp" : {
+               "fielddata" : {
+                  "format" : "doc_values"
+               },
+               "enabled" : true,
+               "doc_values" : true,
+               "store" : true
+            },
+            "properties" : {
+               "swap-pages" : {
+                  "properties" : {
+                     "pswpout" : {
+                        "type" : "double"
+                     },
+                     "pswpin" : {
+                        "type" : "double"
+                     }
+                  }
+               },
+               "serial" : {
+                  "properties" : {
+                     "line" : {
+                        "index" : "not_analyzed",
+                        "doc_values" : true,
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        },
+                        "type" : "string"
+                     }
+                  },
+                  "type" : "nested"
+               },
+               "io" : {
+                  "properties" : {
+                     "io-reads" : {
+                        "properties" : {
+                           "bread" : {
+                              "type" : "double"
+                           },
+                           "rtps" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "io-writes" : {
+                        "properties" : {
+                           "wtps" : {
+                              "type" : "double"
+                           },
+                           "bwrtn" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "tps" : {
+                        "type" : "double"
+                     }
+                  }
+               },
+               "memory" : {
+                  "properties" : {
+                     "bufpg" : {
+                        "type" : "double"
+                     },
+                     "inactive" : {
+                        "type" : "long"
+                     },
+                     "swpused" : {
+                        "type" : "long"
+                     },
+                     "active" : {
+                        "type" : "long"
+                     },
+                     "memused" : {
+                        "type" : "long"
+                     },
+                     "frmpg" : {
+                        "type" : "double"
+                     },
+                     "memfree" : {
+                        "type" : "long"
+                     },
+                     "dirty" : {
+                        "type" : "long"
+                     },
+                     "commit" : {
+                        "type" : "long"
+                     },
+                     "buffers" : {
+                        "type" : "long"
+                     },
+                     "swpused-percent" : {
+                        "type" : "double"
+                     },
+                     "commit-percent" : {
+                        "type" : "double"
+                     },
+                     "cached" : {
+                        "type" : "long"
+                     },
+                     "swpfree" : {
+                        "type" : "long"
+                     },
+                     "swpcad" : {
+                        "type" : "long"
+                     },
+                     "memused-percent" : {
+                        "type" : "double"
+                     },
+                     "campg" : {
+                        "type" : "double"
+                     },
+                     "swpcad-percent" : {
+                        "type" : "double"
+                     }
+                  }
+               },
+               "power-management" : {
+                  "properties" : {
+                     "usb-devices" : {
+                        "properties" : {
+                           "idprod" : {
+                              "type" : "string"
+                           },
+                           "idvendor" : {
+                              "type" : "string"
+                           },
+                           "bus_number" : {
+                              "type" : "string",
+                              "fielddata" : {
+                                 "format" : "doc_values"
+                              },
+                              "index" : "not_analyzed",
+                              "doc_values" : true
+                           },
+                           "product" : {
+                              "type" : "string"
+                           },
+                           "maxpower" : {
+                              "type" : "long"
+                           },
+                           "manufact" : {
+                              "type" : "string"
+                           }
+                        },
+                        "type" : "nested"
+                     },
+                     "cpu-frequency" : {
+                        "type" : "nested",
+                        "properties" : {
+                           "number" : {
+                              "type" : "string",
+                              "fielddata" : {
+                                 "format" : "doc_values"
+                              },
+                              "doc_values" : true,
+                              "index" : "not_analyzed"
+                           },
+                           "frequency" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "voltage-input" : {
+                        "type" : "nested",
+                        "properties" : {
+                           "inV" : {
+                              "type" : "double"
+                           },
+                           "device" : {
+                              "type" : "string"
+                           },
+                           "percent-in" : {
+                              "type" : "double"
+                           },
+                           "number" : {
+                              "fielddata" : {
+                                 "format" : "doc_values"
+                              },
+                              "type" : "string",
+                              "index" : "not_analyzed",
+                              "doc_values" : true
+                           }
+                        }
+                     },
+                     "temperature" : {
+                        "properties" : {
+                           "number" : {
+                              "type" : "string",
+                              "fielddata" : {
+                                 "format" : "doc_values"
+                              },
+                              "index" : "not_analyzed",
+                              "doc_values" : true
+                           },
+                           "degC" : {
+                              "type" : "double"
+                           },
+                           "device" : {
+                              "type" : "string"
+                           },
+                           "percent-temp" : {
+                              "type" : "double"
+                           }
+                        },
+                        "type" : "nested"
+                     },
+                     "fan-speed" : {
+                        "type" : "nested",
+                        "properties" : {
+                           "rpm" : {
+                              "type" : "long"
+                           },
+                           "device" : {
+                              "type" : "string"
+                           },
+                           "drpm" : {
+                              "type" : "long"
+                           },
+                           "number" : {
+                              "fielddata" : {
+                                 "format" : "doc_values"
+                              },
+                              "type" : "string",
+                              "index" : "not_analyzed",
+                              "doc_values" : true
+                           }
+                        }
+                     }
+                  }
+               },
+               "filesystems" : {
+                  "type" : "nested",
+                  "properties" : {
+                     "filesystem" : {
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        },
+                        "type" : "string",
+                        "doc_values" : true,
+                        "index" : "not_analyzed"
+                     }
+                  }
+               },
+               "interrupts-processor" : {
+                  "properties" : {
+                     "intr" : {
+                        "doc_values" : true,
+                        "index" : "not_analyzed",
+                        "type" : "string",
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        }
+                     },
+                     "cpu" : {
+                        "type" : "string",
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        },
+                        "doc_values" : true,
+                        "index" : "not_analyzed"
+                     }
+                  },
+                  "type" : "nested"
+               },
+               "cpu-load" : {
+                  "properties" : {
+                     "nice" : {
+                        "type" : "double"
+                     },
+                     "user" : {
+                        "type" : "double"
+                     },
+                     "iowait" : {
+                        "type" : "double"
+                     },
+                     "system" : {
+                        "type" : "double"
+                     },
+                     "steal" : {
+                        "type" : "double"
+                     },
+                     "cpu" : {
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        },
+                        "type" : "string",
+                        "doc_values" : true,
+                        "index" : "not_analyzed"
+                     },
+                     "idle" : {
+                        "type" : "double"
+                     }
+                  },
+                  "type" : "nested"
+               },
+               "interrupts" : {
+                  "type" : "nested",
+                  "properties" : {
+                     "value" : {
+                        "type" : "double"
+                     },
+                     "intr" : {
+                        "type" : "string",
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        },
+                        "doc_values" : true,
+                        "index" : "not_analyzed"
+                     }
+                  }
+               },
+               "queue" : {
+                  "properties" : {
+                     "ldavg-1" : {
+                        "type" : "double"
+                     },
+                     "ldavg-5" : {
+                        "type" : "double"
+                     },
+                     "ldavg-15" : {
+                        "type" : "double"
+                     },
+                     "blocked" : {
+                        "type" : "long"
+                     },
+                     "runq-sz" : {
+                        "type" : "long"
+                     },
+                     "plist-sz" : {
+                        "type" : "long"
+                     }
+                  }
+               },
+               "kernel" : {
+                  "properties" : {
+                     "pty-nr" : {
+                        "type" : "long"
+                     },
+                     "file-nr" : {
+                        "type" : "long"
+                     },
+                     "inode-nr" : {
+                        "type" : "long"
+                     },
+                     "dentunusd" : {
+                        "type" : "long"
+                     }
+                  }
+               },
+               "network" : {
+                  "properties" : {
+                     "net-udp" : {
+                        "properties" : {
+                           "idgmerr" : {
+                              "type" : "double"
+                           },
+                           "odgm" : {
+                              "type" : "double"
+                           },
+                           "idgm" : {
+                              "type" : "double"
+                           },
+                           "noport" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "net-sock" : {
+                        "properties" : {
+                           "udpsck" : {
+                              "type" : "long"
+                           },
+                           "ip-frag" : {
+                              "type" : "long"
+                           },
+                           "totsck" : {
+                              "type" : "long"
+                           },
+                           "rawsck" : {
+                              "type" : "long"
+                           },
+                           "tcpsck" : {
+                              "type" : "long"
+                           },
+                           "tcp-tw" : {
+                              "type" : "long"
+                           }
+                        }
+                     },
+                     "net-eip6" : {
+                        "properties" : {
+                           "idisc6" : {
+                              "type" : "double"
+                           },
+                           "inort6" : {
+                              "type" : "double"
+                           },
+                           "onort6" : {
+                              "type" : "double"
+                           },
+                           "fragf6" : {
+                              "type" : "double"
+                           },
+                           "i2big6" : {
+                              "type" : "double"
+                           },
+                           "itrpck6" : {
+                              "type" : "double"
+                           },
+                           "iadrer6" : {
+                              "type" : "double"
+                           },
+                           "odisc6" : {
+                              "type" : "double"
+                           },
+                           "iukwnp6" : {
+                              "type" : "double"
+                           },
+                           "ihdrer6" : {
+                              "type" : "double"
+                           },
+                           "asmf6" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "net-icmp6" : {
+                        "properties" : {
+                           "oechr6" : {
+                              "type" : "double"
+                           },
+                           "onbsol6" : {
+                              "type" : "double"
+                           },
+                           "iech6" : {
+                              "type" : "double"
+                           },
+                           "irtad6" : {
+                              "type" : "double"
+                           },
+                           "igmbrd6" : {
+                              "type" : "double"
+                           },
+                           "ogmbrd6" : {
+                              "type" : "double"
+                           },
+                           "inbad6" : {
+                              "type" : "double"
+                           },
+                           "iechr6" : {
+                              "type" : "double"
+                           },
+                           "ogmbr6" : {
+                              "type" : "double"
+                           },
+                           "omsg6" : {
+                              "type" : "double"
+                           },
+                           "inbsol6" : {
+                              "type" : "double"
+                           },
+                           "onbad6" : {
+                              "type" : "double"
+                           },
+                           "irtsol6" : {
+                              "type" : "double"
+                           },
+                           "ortsol6" : {
+                              "type" : "double"
+                           },
+                           "imsg6" : {
+                              "type" : "double"
+                           },
+                           "igmbr6" : {
+                              "type" : "double"
+                           },
+                           "igmbq6" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "net-etcp" : {
+                        "properties" : {
+                           "isegerr" : {
+                              "type" : "double"
+                           },
+                           "retrans" : {
+                              "type" : "double"
+                           },
+                           "estres" : {
+                              "type" : "double"
+                           },
+                           "orsts" : {
+                              "type" : "double"
+                           },
+                           "atmptf" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "net-ip6" : {
+                        "properties" : {
+                           "irec6" : {
+                              "type" : "double"
+                           },
+                           "fragcr6" : {
+                              "type" : "double"
+                           },
+                           "orq6" : {
+                              "type" : "double"
+                           },
+                           "idel6" : {
+                              "type" : "double"
+                           },
+                           "asmrq6" : {
+                              "type" : "double"
+                           },
+                           "asmok6" : {
+                              "type" : "double"
+                           },
+                           "imcpck6" : {
+                              "type" : "double"
+                           },
+                           "fwddgm6" : {
+                              "type" : "double"
+                           },
+                           "fragok6" : {
+                              "type" : "double"
+                           },
+                           "omcpck6" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "net-sock6" : {
+                        "properties" : {
+                           "tcp6sck" : {
+                              "type" : "long"
+                           },
+                           "raw6sck" : {
+                              "type" : "long"
+                           },
+                           "ip6-frag" : {
+                              "type" : "long"
+                           },
+                           "udp6sck" : {
+                              "type" : "long"
+                           }
+                        }
+                     },
+                     "net-nfsd" : {
+                        "properties" : {
+                           "sread" : {
+                              "type" : "double"
+                           },
+                           "packet" : {
+                              "type" : "double"
+                           },
+                           "swrite" : {
+                              "type" : "double"
+                           },
+                           "miss" : {
+                              "type" : "double"
+                           },
+                           "badcall" : {
+                              "type" : "double"
+                           },
+                           "scall" : {
+                              "type" : "double"
+                           },
+                           "hit" : {
+                              "type" : "double"
+                           },
+                           "tcp" : {
+                              "type" : "double"
+                           },
+                           "sgetatt" : {
+                              "type" : "double"
+                           },
+                           "saccess" : {
+                              "type" : "double"
+                           },
+                           "udp" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "net-icmp" : {
+                        "properties" : {
+                           "oechr" : {
+                              "type" : "double"
+                           },
+                           "iechr" : {
+                              "type" : "double"
+                           },
+                           "otmr" : {
+                              "type" : "double"
+                           },
+                           "oech" : {
+                              "type" : "double"
+                           },
+                           "otm" : {
+                              "type" : "double"
+                           },
+                           "iadrmk" : {
+                              "type" : "double"
+                           },
+                           "iech" : {
+                              "type" : "double"
+                           },
+                           "itmr" : {
+                              "type" : "double"
+                           },
+                           "oadrmk" : {
+                              "type" : "double"
+                           },
+                           "oadrmkr" : {
+                              "type" : "double"
+                           },
+                           "omsg" : {
+                              "type" : "double"
+                           },
+                           "itm" : {
+                              "type" : "double"
+                           },
+                           "imsg" : {
+                              "type" : "double"
+                           },
+                           "iadrmkr" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "net-ip" : {
+                        "properties" : {
+                           "asmok" : {
+                              "type" : "double"
+                           },
+                           "fwddgm" : {
+                              "type" : "double"
+                           },
+                           "asmrq" : {
+                              "type" : "double"
+                           },
+                           "fragok" : {
+                              "type" : "double"
+                           },
+                           "fragcrt" : {
+                              "type" : "double"
+                           },
+                           "orq" : {
+                              "type" : "double"
+                           },
+                           "irec" : {
+                              "type" : "double"
+                           },
+                           "idel" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "net-edev" : {
+                        "properties" : {
+                           "coll" : {
+                              "type" : "double"
+                           },
+                           "rxfifo" : {
+                              "type" : "double"
+                           },
+                           "rxfram" : {
+                              "type" : "double"
+                           },
+                           "iface" : {
+                              "type" : "string",
+                              "fielddata" : {
+                                 "format" : "doc_values"
+                              },
+                              "index" : "not_analyzed",
+                              "doc_values" : true
+                           },
+                           "rxerr" : {
+                              "type" : "double"
+                           },
+                           "rxdrop" : {
+                              "type" : "double"
+                           },
+                           "txcarr" : {
+                              "type" : "double"
+                           },
+                           "txerr" : {
+                              "type" : "double"
+                           },
+                           "txfifo" : {
+                              "type" : "double"
+                           },
+                           "txdrop" : {
+                              "type" : "double"
+                           }
+                        },
+                        "type" : "nested"
+                     },
+                     "net-eip" : {
+                        "properties" : {
+                           "onort" : {
+                              "type" : "double"
+                           },
+                           "iadrerr" : {
+                              "type" : "double"
+                           },
+                           "odisc" : {
+                              "type" : "double"
+                           },
+                           "ihdrerr" : {
+                              "type" : "double"
+                           },
+                           "asmf" : {
+                              "type" : "double"
+                           },
+                           "idisc" : {
+                              "type" : "double"
+                           },
+                           "iukwnpr" : {
+                              "type" : "double"
+                           },
+                           "fragf" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "net-nfs" : {
+                        "properties" : {
+                           "access" : {
+                              "type" : "double"
+                           },
+                           "retrans" : {
+                              "type" : "double"
+                           },
+                           "write" : {
+                              "type" : "double"
+                           },
+                           "call" : {
+                              "type" : "double"
+                           },
+                           "read" : {
+                              "type" : "double"
+                           },
+                           "getatt" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "net-eicmp" : {
+                        "properties" : {
+                           "oparmpb" : {
+                              "type" : "double"
+                           },
+                           "itmex" : {
+                              "type" : "double"
+                           },
+                           "odstunr" : {
+                              "type" : "double"
+                           },
+                           "iredir" : {
+                              "type" : "double"
+                           },
+                           "iparmpb" : {
+                              "type" : "double"
+                           },
+                           "isrcq" : {
+                              "type" : "double"
+                           },
+                           "oredir" : {
+                              "type" : "double"
+                           },
+                           "ierr" : {
+                              "type" : "double"
+                           },
+                           "otmex" : {
+                              "type" : "double"
+                           },
+                           "idstunr" : {
+                              "type" : "double"
+                           },
+                           "oerr" : {
+                              "type" : "double"
+                           },
+                           "osrcq" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "net-udp6" : {
+                        "properties" : {
+                           "idgm6" : {
+                              "type" : "double"
+                           },
+                           "odgm6" : {
+                              "type" : "double"
+                           },
+                           "idgmer6" : {
+                              "type" : "double"
+                           },
+                           "noport6" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "net-eicmp6" : {
+                        "properties" : {
+                           "otmex6" : {
+                              "type" : "double"
+                           },
+                           "ipck2b6" : {
+                              "type" : "double"
+                           },
+                           "iprmpb6" : {
+                              "type" : "double"
+                           },
+                           "idtunr6" : {
+                              "type" : "double"
+                           },
+                           "oredir6" : {
+                              "type" : "double"
+                           },
+                           "oprmpb6" : {
+                              "type" : "double"
+                           },
+                           "opck2b6" : {
+                              "type" : "double"
+                           },
+                           "iredir6" : {
+                              "type" : "double"
+                           },
+                           "itmex6" : {
+                              "type" : "double"
+                           },
+                           "ierr6" : {
+                              "type" : "double"
+                           },
+                           "odtunr6" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "net-tcp" : {
+                        "properties" : {
+                           "oseg" : {
+                              "type" : "double"
+                           },
+                           "passive" : {
+                              "type" : "double"
+                           },
+                           "iseg" : {
+                              "type" : "double"
+                           },
+                           "active" : {
+                              "type" : "double"
+                           }
+                        }
+                     },
+                     "net-dev" : {
+                        "properties" : {
+                           "rxcmp" : {
+                              "type" : "double"
+                           },
+                           "iface" : {
+                              "fielddata" : {
+                                 "format" : "doc_values"
+                              },
+                              "type" : "string",
+                              "index" : "not_analyzed",
+                              "doc_values" : true
+                           },
+                           "rxmcst" : {
+                              "type" : "double"
+                           },
+                           "txpck" : {
+                              "type" : "double"
+                           },
+                           "rxpck" : {
+                              "type" : "double"
+                           },
+                           "txkB" : {
+                              "type" : "double"
+                           },
+                           "txcmp" : {
+                              "type" : "double"
+                           },
+                           "rxkB" : {
+                              "type" : "double"
+                           }
+                        },
+                        "type" : "nested"
+                     }
+                  }
+               },
+               "timestamp" : {
+                  "properties" : {
+                     "interval" : {
+                        "type" : "long"
+                     },
+                     "date" : {
+                        "doc_values" : true,
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        },
+                        "format" : "yyyy-MM-dd",
+                        "type" : "date"
+                     },
+                     "time" : {
+                        "doc_values" : true,
+                        "format" : "HH:mm:ss",
+                        "type" : "date",
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        }
+                     },
+                     "utc" : {
+                        "type" : "long"
+                     }
+                  }
+               },
+               "process-and-context-switch" : {
+                  "properties" : {
+                     "cswch" : {
+                        "type" : "double"
+                     },
+                     "proc" : {
+                        "type" : "double"
+                     }
+                  }
+               },
+               "paging" : {
+                  "properties" : {
+                     "vmeff-percent" : {
+                        "type" : "double"
+                     },
+                     "pgscand" : {
+                        "type" : "double"
+                     },
+                     "pgscank" : {
+                        "type" : "double"
+                     },
+                     "pgfree" : {
+                        "type" : "double"
+                     },
+                     "pgpgout" : {
+                        "type" : "double"
+                     },
+                     "pgsteal" : {
+                        "type" : "double"
+                     },
+                     "fault" : {
+                        "type" : "double"
+                     },
+                     "pgpgin" : {
+                        "type" : "double"
+                     },
+                     "majflt" : {
+                        "type" : "double"
+                     }
+                  }
+               },
+               "cpu-load-all" : {
+                  "type" : "nested",
+                  "properties" : {
+                     "cpu" : {
+                        "doc_values" : true,
+                        "index" : "not_analyzed",
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        },
+                        "type" : "string"
+                     },
+                     "steal" : {
+                        "type" : "double"
+                     },
+                     "usr" : {
+                        "type" : "double"
+                     },
+                     "soft" : {
+                        "type" : "double"
+                     },
+                     "nice" : {
+                        "type" : "double"
+                     },
+                     "idle" : {
+                        "type" : "double"
+                     },
+                     "gnice" : {
+                        "type" : "double"
+                     },
+                     "guest" : {
+                        "type" : "double"
+                     },
+                     "iowait" : {
+                        "type" : "double"
+                     },
+                     "sys" : {
+                        "type" : "double"
+                     },
+                     "irq" : {
+                        "type" : "double"
+                     }
+                  }
+               },
+               "_metadata" : {
+                  "properties" : {
+                     "release" : {
+                        "type" : "string",
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        },
+                        "index" : "not_analyzed",
+                        "doc_values" : true
+                     },
+                     "sysname" : {
+                        "index" : "not_analyzed",
+                        "doc_values" : true,
+                        "type" : "string",
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        }
+                     },
+                     "generated-by-version" : {
+                        "type" : "string"
+                     },
+                     "file-date" : {
+                        "doc_values" : true,
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        },
+                        "format" : "yyyy-MM-dd",
+                        "type" : "date"
+                     },
+                     "number-of-cpus" : {
+                        "doc_values" : true,
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        },
+                        "type" : "integer"
+                     },
+                     "sysdata-version" : {
+                        "type" : "float",
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        },
+                        "doc_values" : true
+                     },
+                     "nodename" : {
+                        "index" : "not_analyzed",
+                        "doc_values" : true,
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        },
+                        "type" : "string"
+                     },
+                     "generated-by" : {
+                        "type" : "string"
+                     },
+                     "machine" : {
+                        "index" : "not_analyzed",
+                        "doc_values" : true,
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        },
+                        "type" : "string"
+                     }
+                  }
+               },
+               "disk" : {
+                  "properties" : {
+                     "avgqu-sz" : {
+                        "type" : "double"
+                     },
+                     "tps" : {
+                        "type" : "double"
+                     },
+                     "wr_sec" : {
+                        "type" : "double"
+                     },
+                     "await" : {
+                        "type" : "double"
+                     },
+                     "util-percent" : {
+                        "type" : "double"
+                     },
+                     "svctm" : {
+                        "type" : "double"
+                     },
+                     "avgrq-sz" : {
+                        "type" : "double"
+                     },
+                     "rd_sec" : {
+                        "type" : "double"
+                     },
+                     "disk-device" : {
+                        "index" : "not_analyzed",
+                        "doc_values" : true,
+                        "type" : "string",
+                        "fielddata" : {
+                           "format" : "doc_values"
+                        }
+                     }
+                  },
+                  "type" : "nested"
+               },
+               "hugepages" : {
+                  "properties" : {
+                     "hugused" : {
+                        "type" : "long"
+                     },
+                     "hugfree" : {
+                        "type" : "long"
+                     },
+                     "hugused-percent" : {
+                        "type" : "double"
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}

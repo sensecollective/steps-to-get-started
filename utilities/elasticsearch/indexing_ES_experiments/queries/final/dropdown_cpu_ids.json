@@ -1,0 +1,29 @@
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "_metadata.nodename": "benchserver2"
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "cpus": {
+      "nested": {
+        "path": "cpu-load-all"
+      },
+      "aggs": {
+        "cpu_ids": {
+          "terms": {
+            "field": "cpu-load-all.cpu",
+            "size": 0
+          }
+        }
+      }
+    }
+  }
+}

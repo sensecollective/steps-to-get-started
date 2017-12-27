@@ -1,0 +1,33 @@
+{
+  "fields": [],
+  "size": 1024,
+  "query": {
+    "nested": {
+      "path": "disk",
+      "score_mode": "avg",
+      "inner_hits": {
+        "fields": [],
+        "fielddata_fields": [
+          "disk.tps",
+          "disk.wr_sec"
+        ]
+      },
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "match": {
+                "disk.disk-device": "dev8-0"
+              }
+            },
+            {
+              "term": {
+                "disk.wr_sec": "0.92"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

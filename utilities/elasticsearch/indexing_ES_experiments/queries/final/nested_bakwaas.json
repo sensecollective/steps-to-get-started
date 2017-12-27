@@ -1,0 +1,63 @@
+{
+  "size": 0,
+  "query": {
+    "filtered": {
+      "query": {
+        "query_string": {
+          "analyze_wildcard": true,
+          "query": "_metadata.nodename:benchserver2"
+        }
+      },
+      "filter": {
+        "bool": {
+          "must": [
+            {
+              "range": {
+                "_timestamp": {
+                  "gte": "1434982853565",
+                  "lte": "1434984034923"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "aggs": {
+    "4": {
+      "date_histogram": {
+        "interval": "1m",
+        "field": "_timestamp",
+        "min_doc_count": 0,
+        "extended_bounds": {
+          "min": "1434982853565",
+          "max": "1434984034923"
+        }
+      },
+      "aggs": {
+        "2": {
+          "nested": {
+            "path": "disk"
+          },
+          "aggs": {
+            "nested_aggs": {
+              "filter": {
+                "term": {
+                  "disk.disk-device": "dev8-0"
+                }
+              },
+              "aggs": {
+                "1": {
+                  "avg": {
+                    "field": "disk.wr_sec"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

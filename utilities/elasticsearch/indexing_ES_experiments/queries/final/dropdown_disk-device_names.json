@@ -1,0 +1,29 @@
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "_metadata.nodename": "benchserver2"
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "disk_percentile": {
+      "nested": {
+        "path": "disk"
+      },
+      "aggs": {
+        "perdisk": {
+          "terms": {
+            "field": "disk.disk-device",
+            "size": 0
+          }
+        }
+      }
+    }
+  }
+}

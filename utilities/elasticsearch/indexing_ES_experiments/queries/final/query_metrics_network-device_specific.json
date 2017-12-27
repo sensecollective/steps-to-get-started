@@ -1,0 +1,40 @@
+{
+  "size": 1,
+  "fields": [],
+  "aggs": {
+    "3": {
+      "date_histogram": {
+        "interval": "60s",
+        "field": "_timestamp",
+        "min_doc_count": 0,
+        "extended_bounds": {
+          "min": "1434982828753",
+          "max": "1434984042120"
+        }
+      },
+      "aggs": {
+        "2": {
+          "nested": {
+            "path": "network.net-dev"
+          },
+          "aggs": {
+            "1": {
+              "filter": {
+                "term": {
+                  "network.net-dev.iface": "ens4f0"
+                }
+              },
+              "aggs": {
+                "root": {
+                  "avg": {
+                    "field": "network.net-dev.rxkB"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

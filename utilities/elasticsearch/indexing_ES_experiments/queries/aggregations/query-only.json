@@ -1,0 +1,58 @@
+{
+    "size": 1000,
+    "fields": [
+        "_timestamp",
+        "timestamp.date",
+        "timestamp.time",
+        "queue.ldavg-1",
+        "queue.ldavg-5",
+        "queue.ldavg-15",
+        "memory.memfree",
+        "memory.memused",
+        "memory.memused-percent",
+        "memory.cached",
+        "cpu-load.cpu",
+        "cpu-load.user",
+        "cpu-load.system",
+        "cpu-load.iowait",
+        "cpu-load.idle",
+        "disk.disk-device",
+        "disk.await",
+        "disk.rd_sec",
+        "disk.wr_sec",
+        "disk.avgrq-sz",
+        "disk.avgqu-sz",
+        "network.net-dev.iface",
+        "network.net-dev.rxkB",
+        "network.net-dev.txkB"
+    ],
+    "query": {
+        "filtered": {
+            "filter": {
+                "and": {
+                    "filters": [
+                        {
+                            "bool": {
+                                "must": {
+                                    "term": {
+                                        "_metadata.nodename": "perf92.example.com"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "range": {
+                                "_timestamp": {
+                                    "lt": "now"
+                                },
+                                "execution": "fielddata",
+                                "_cache": "false"
+                            }
+                        }
+                    ],
+                    "_cache": "false"
+                }
+            }
+        }
+    }
+}

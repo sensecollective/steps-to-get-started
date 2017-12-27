@@ -1,0 +1,15 @@
+{
+  "size": 0,
+  "aggs": {
+    "by_md5": {
+      "terms": {
+        "field": "_metadata.nodename",
+        "size": 8192
+      },
+      "aggs": {
+        "min_date": {"min": {"field": "_timestamp"}},
+        "max_date": {"max": {"field": "_timestamp"}}
+      }
+    }
+  }
+}

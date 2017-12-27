@@ -1,0 +1,53 @@
+{
+  "fields": [],
+  "size": 1,
+  "query": {
+    "nested": {
+      "path": "disk",
+      "score_mode": "avg",
+      "inner_hits": {
+        "fields": [
+          "wr_sec"
+        ],
+        "fielddata_fields": [
+          "disk.wr_sec"
+        ]
+      },
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "match": {
+                "disk.disk-device": "dev8-0"
+              }
+            },
+            {
+              "range": {
+                "disk.wr_sec": {
+                  "gte": "0.04",
+                  "lt": "10.1"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "aggs": {
+    "2": {
+      "date_histogram": {
+        "interval": "60s",
+        "field": "_timestamp",
+        "min_doc_count": 0
+      },
+      "aggs": {
+        "1": {
+          "avg": {
+            "field": "io.io-writes.bwrtn"
+          }
+        }
+      }
+    }
+  }
+}
