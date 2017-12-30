@@ -45,3 +45,7 @@ export PATH=$PATH:$GOPATH/bin
 alias define='sdcv'
 
 echo -e "\t\t\t\e[1;32m Colorless\e[1;31m Green\e[0m \e[1;42mIdeas\e[1;44m Sleep\e[1;40m Furiously \e[0m"
+
+alias gls='git ls-files-root --cached --others --exclude-standard'
+alias glsr='git ls-files $(git rev-parse --show-toplevel)'
+
