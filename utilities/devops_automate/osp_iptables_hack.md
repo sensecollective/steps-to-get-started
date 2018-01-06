@@ -1,12 +1,14 @@
-OSP Verizon
+## OSP
 
-
-CFME side
+### CFME side
+```
 iptables -A OUTPUT -t nat -d 192.0.2.1 -j DNAT --to-destination 10.16.154.6
 iptables -A OUTPUT -t nat -d 172,21,0.10 -j DNAT --to-destination 10.16.154.9
+```
 
-OSP side:
+### OSP side
 
+```
 # Undercloud
 
 # list all endpoint ports
@@ -21,7 +23,7 @@ $ for i in `cat ports_new`; do sudo iptables -t nat -A PREROUTING -i em1 -p tcp 
 
 for i in {1..13}; do sudo iptables -t nat -D PREROUTING 5; done
 
-# same for overcloud controller
+same for overcloud controller
 
 # additional step
 $ sudo iptables -t nat -A PREROUTING -i br-ex -p tcp --dport 5000 -j DNAT --to-destination 192.0.2.11:5000
@@ -182,3 +184,4 @@ check if semanage needed
 ============
 run postconfig
 ===========
+```
