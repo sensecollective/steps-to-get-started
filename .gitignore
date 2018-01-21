@@ -35,3 +35,5 @@ dumps
 *.db
 uploads/
 target/
+
+.ipynb_checkpoints
